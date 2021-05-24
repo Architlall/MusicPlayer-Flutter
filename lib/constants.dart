@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //Colors
 const cwhite = Color(0xFFEAEBF3);
@@ -30,3 +31,20 @@ const art2 = "assets/images/Art2.jpg";
 const art3 = "assets/images/Art3.jpg";
 const art4 = "assets/images/Art4.jpg";
 const art5 = "assets/images/Art5.jpg";
+
+//ButtonWidget
+Widget cbutton(String symbol) {
+  return Container(
+    padding: EdgeInsets.fromLTRB(25, 25, 20, 20),
+    height: 80,
+    width: 80,
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage(button),
+      ),
+    ),
+    child: SvgPicture.asset(
+      symbol,
+    ),
+  );
+}

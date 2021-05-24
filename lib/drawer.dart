@@ -32,6 +32,7 @@ class MainDrawer extends StatelessWidget {
           ),
         ),
         ListTile(
+          tileColor: Colors.lime[50],
           leading: Icon(Icons.person),
           title: Text(
             'Your Profile',
@@ -42,6 +43,7 @@ class MainDrawer extends StatelessWidget {
           onTap: null,
         ),
         ListTile(
+          tileColor: Colors.lime[50],
           leading: Icon(Icons.settings),
           title: Text(
             'Settings',
@@ -52,6 +54,7 @@ class MainDrawer extends StatelessWidget {
           onTap: null,
         ),
         ListTile(
+          tileColor: Colors.lime[50],
           leading: Icon(Icons.arrow_back),
           title: Text(
             'Logout',
