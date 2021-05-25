@@ -1,3 +1,6 @@
+import 'package:first_app/Model/listModel.dart';
+import 'package:first_app/audio_player_url.dart';
+import 'package:first_app/farzi.dart';
 import 'package:flutter/material.dart';
 import './drawer.dart';
 import './Trending.dart';
@@ -6,22 +9,17 @@ import './constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import './farzi.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'AppBar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
+  runApp(
+    MaterialApp(
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/playing': (context) => AudioPlayerUrl()
+      },
+    ),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -33,20 +31,41 @@ class MyHomePageState extends State<MyHomePage> {
   Icon cusIcon = Icon(Icons.search);
   Widget cusSearchBar = Text('Welcome');
 
-  Future<String> getData() async {
+  ListModel listModel = ListModel();
+  bool circular = true;
+
+  void getData() async {
     http.Response response = await http.get(
         Uri.parse("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem"),
         headers: {
-          "Accept": "application/json",
           "x-rapidapi-key":
               "21957ec02fmsh1a4397d220eb721p1c836cjsn1809d58d20f2",
           "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
         });
 
-    Map<String, dynamic> data = json.decode(response.body);
-    print(data);
-    return (response.body);
+    var data = json.decode(response.body);
+    setState(() {
+      listModel = ListModel.fromJson(data);
+      circular = false;
+    });
+    print(listModel.data[0].title);
+    print(listModel.data[0].preview);
+    String url = listModel.data[0].preview;
   }
+
+//   API Key: 65e3569778654a4bf5159ec1b5384870
+
+// Shared Secret: 48402e02320940c68965e434307b834a
+  // Future<String> getData() async {
+  //   http.Response response = await http
+  //       .get(Uri.parse("https://jsonplaceholder.typicode.com/posts"), headers: {
+  //     "Accept": "application/json",
+  //   });
+  //   List data = jsonDecode(response.body);
+  //   // print(data);
+  //   print(data[0]["title"]);
+  //   return (response.body);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +110,13 @@ class MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: getData,
               child: Text("get data"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/playing');
+              },
+              child: Text("play"),
             ),
             SizedBox(
               height: 40,
