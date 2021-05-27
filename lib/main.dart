@@ -1,6 +1,7 @@
 import 'package:first_app/Model/listModel.dart';
 import 'package:first_app/audio_player_url.dart';
 import 'package:first_app/farzi.dart';
+import 'package:first_app/testplayer.dart';
 import 'package:flutter/material.dart';
 import './drawer.dart';
 import './Trending.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import './farzi.dart';
+import './testplayer.dart';
 
 void main() {
   runApp(
@@ -28,6 +30,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  var songname;
+
+  final songnamecon = new TextEditingController();
+
   Icon cusIcon = Icon(Icons.search);
   Widget cusSearchBar = Text('Welcome');
 
@@ -36,7 +42,8 @@ class MyHomePageState extends State<MyHomePage> {
 
   void getData() async {
     http.Response response = await http.get(
-        Uri.parse("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem"),
+        Uri.parse(
+            "https://deezerdevs-deezer.p.rapidapi.com/search?q=$songname"),
         headers: {
           "x-rapidapi-key":
               "21957ec02fmsh1a4397d220eb721p1c836cjsn1809d58d20f2",
@@ -50,7 +57,8 @@ class MyHomePageState extends State<MyHomePage> {
     });
     print(listModel.data[0].title);
     print(listModel.data[0].preview);
-    String url = listModel.data[0].preview;
+    print(listModel.data[0].album.title);
+    String urlfrommain = listModel.data[0].preview;
   }
 
 //   API Key: 65e3569778654a4bf5159ec1b5384870
@@ -76,30 +84,48 @@ class MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.grey[800],
           elevation: 30.0,
           actions: <Widget>[
+            // IconButton(
+            //   onPressed: () {
+            //     setState(() {
+            //       if (this.cusIcon.icon == Icons.search) {
+            //         this.cusIcon = Icon(Icons.cancel);
+            //         this.cusSearchBar = TextField(
+            //           textInputAction: TextInputAction.go,
+            //           decoration: InputDecoration(
+            //             border: InputBorder.none,
+            //             hintText: "Search for songs",
+            //           ),
+            //           style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 16.0,
+            //           ),
+            //         );
+            //       } else {
+            //         this.cusIcon = Icon(Icons.search);
+            //         this.cusSearchBar = Text('Welcome');
+            //       }
+            //     });
+            //   },
+            //   icon: cusIcon,
+            // )
+
+            SizedBox(
+              height: 30,
+              width: 140,
+              child: TextField(
+                controller: songnamecon,
+                decoration: InputDecoration(hintText: 'Enter song'),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+
             IconButton(
-              onPressed: () {
-                setState(() {
-                  if (this.cusIcon.icon == Icons.search) {
-                    this.cusIcon = Icon(Icons.cancel);
-                    this.cusSearchBar = TextField(
-                      textInputAction: TextInputAction.go,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search for songs",
-                      ),
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                      ),
-                    );
-                  } else {
-                    this.cusIcon = Icon(Icons.search);
-                    this.cusSearchBar = Text('Welcome');
-                  }
-                });
-              },
-              icon: cusIcon,
-            )
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  songname = songnamecon.text;
+                }),
           ]),
       drawer: MainDrawer(),
       body: SingleChildScrollView(
@@ -114,7 +140,18 @@ class MyHomePageState extends State<MyHomePage> {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/playing');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => AudioPlayerUrl(
+                      passedPreview: listModel.data[0].preview,
+                      passedCover: listModel.data[0].album.cover,
+                      passedName: listModel.data[0].artist.name,
+                      passedPicture: listModel.data[0].artist.picture,
+                      passedTitle: listModel.data[0].album.title,
+                    ),
+                  ),
+                );
               },
               child: Text("play"),
             ),

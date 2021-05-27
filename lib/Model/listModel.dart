@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:first_app/Model/model.dart';
+import './albumModel.dart';
+import './artistModel.dart';
 
 part 'listModel.g.dart';
 

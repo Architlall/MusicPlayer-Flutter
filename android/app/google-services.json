@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "503970677444",
+    "project_id": "flutter-musicplayer-73e97",
+    "storage_bucket": "flutter-musicplayer-73e97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503970677444:android:89f1eb56d0fb49f4f23f91",
+        "android_client_info": {
+          "package_name": "com.musicplayer.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503970677444-o7i1fc1mpqgabhrv2vuhulbmdaaff2kd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5x26clSwHueLZV2h1TJnbM4101VXdZks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503970677444-o7i1fc1mpqgabhrv2vuhulbmdaaff2kd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
