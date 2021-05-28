@@ -1,6 +1,6 @@
 import 'package:first_app/Model/listModel.dart';
-import 'package:first_app/audio_player_url.dart';
-import 'package:first_app/farzi.dart';
+
+import 'package:first_app/listview.dart';
 import 'package:first_app/testplayer.dart';
 import 'package:flutter/material.dart';
 import './drawer.dart';
@@ -10,7 +10,8 @@ import './constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import './farzi.dart';
+import './poplist.dart';
+
 import './testplayer.dart';
 
 void main() {
@@ -18,7 +19,9 @@ void main() {
     MaterialApp(
       routes: {
         '/': (context) => MyHomePage(),
-        '/playing': (context) => AudioPlayerUrl()
+        '/playing': (context) => AudioPlayerUrl(),
+        '/listview': (context) => SongsWidget(),
+        '/poplist': (context) => PopList()
       },
     ),
   );
@@ -30,6 +33,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  void playSong() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => AudioPlayerUrl(
+          passedPreview: listModel.data[0].preview,
+          passedCover: listModel.data[0].album.cover,
+          passedName: listModel.data[0].artist.name,
+          passedPicture: listModel.data[0].artist.picture,
+          passedTitle: listModel.data[0].album.title,
+        ),
+      ),
+    );
+  }
+
+  void listBuilder() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PopList(
+          passedLength: listModel.data.length,
+          passedName: listModel.data,
+          passedTitle: listModel.data,
+        ),
+      ),
+    );
+  }
+
   var songname;
 
   final songnamecon = new TextEditingController();
@@ -40,7 +71,7 @@ class MyHomePageState extends State<MyHomePage> {
   ListModel listModel = ListModel();
   bool circular = true;
 
-  void getData() async {
+  Future getData() async {
     http.Response response = await http.get(
         Uri.parse(
             "https://deezerdevs-deezer.p.rapidapi.com/search?q=$songname"),
@@ -49,17 +80,30 @@ class MyHomePageState extends State<MyHomePage> {
               "21957ec02fmsh1a4397d220eb721p1c836cjsn1809d58d20f2",
           "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
         });
-
-    var data = json.decode(response.body);
-    setState(() {
-      listModel = ListModel.fromJson(data);
-      circular = false;
-    });
-    print(listModel.data[0].title);
-    print(listModel.data[0].preview);
-    print(listModel.data[0].album.title);
-    String urlfrommain = listModel.data[0].preview;
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      setState(() {
+        listModel = ListModel.fromJson(data);
+        circular = false;
+      });
+    } else {
+      throw Exception("Failed to load songs!");
+    }
+    print(listModel.data.length);
   }
+
+  // Future<List<Movie>> _fetchAllMovies() async {
+  //   final response = await http.get("http://www.omdbapi.com/?s=Batman&page=2&apikey=564727fa");
+
+  //   if(response.statusCode == 200) {
+  //     final result = jsonDecode(response.body);
+  //     Iterable list = result["Search"];
+  //     return list.map((movie) => Movie.fromJson(movie)).toList();
+  //   } else {
+  //     throw Exception("Failed to load movies!");
+  //   }
+
+  // }
 
 //   API Key: 65e3569778654a4bf5159ec1b5384870
 
@@ -111,10 +155,10 @@ class MyHomePageState extends State<MyHomePage> {
 
             SizedBox(
               height: 30,
-              width: 140,
+              width: 150,
               child: TextField(
                 controller: songnamecon,
-                decoration: InputDecoration(hintText: 'Enter song'),
+                decoration: InputDecoration(hintText: 'Enter song or artist'),
               ),
             ),
             SizedBox(
@@ -123,8 +167,10 @@ class MyHomePageState extends State<MyHomePage> {
 
             IconButton(
                 icon: Icon(Icons.search),
-                onPressed: () {
+                onPressed: () async {
                   songname = songnamecon.text;
+                  await getData();
+                  listBuilder();
                 }),
           ]),
       drawer: MainDrawer(),
@@ -133,28 +179,6 @@ class MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            ElevatedButton(
-              onPressed: getData,
-              child: Text("get data"),
-            ),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => AudioPlayerUrl(
-                      passedPreview: listModel.data[0].preview,
-                      passedCover: listModel.data[0].album.cover,
-                      passedName: listModel.data[0].artist.name,
-                      passedPicture: listModel.data[0].artist.picture,
-                      passedTitle: listModel.data[0].album.title,
-                    ),
-                  ),
-                );
-              },
-              child: Text("play"),
-            ),
             SizedBox(
               height: 40,
             ),
@@ -187,7 +211,7 @@ class MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40, top: 20),
+              padding: const EdgeInsets.only(left: 30, top: 60),
               child: Text(
                 'TRENDING ALBUMS',
                 style: TextStyle(
@@ -209,23 +233,56 @@ class MyHomePageState extends State<MyHomePage> {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: <Widget>[
-                    songsCard(1, art1, "Blinding Lights", "The Weeknd"),
+                    GestureDetector(
+                        onTap: () async {
+                          songname = "blinding lights";
+                          await getData();
+                          playSong();
+                        },
+                        child: songsCard(
+                            1, art1, "Blinding Lights", "The Weeknd")),
                     SizedBox(
                       height: 20,
                     ),
-                    songsCard(2, art2, "The Box", "Roddy Rich"),
+                    GestureDetector(
+                        onTap: () async {
+                          songname = "the box";
+                          await getData();
+                          playSong();
+                        },
+                        child: songsCard(2, art2, "The Box", "Roddy Rich")),
                     SizedBox(
                       height: 20,
                     ),
-                    songsCard(3, art3, "Dont Start Now", "Dua Lipa"),
+                    GestureDetector(
+                        onTap: () async {
+                          songname = "dont start now";
+                          await getData();
+                          playSong();
+                        },
+                        child:
+                            songsCard(3, art3, "Dont Start Now", "Dua Lipa")),
                     SizedBox(
                       height: 20,
                     ),
-                    songsCard(4, art4, "Circles", "Post Malone"),
+                    GestureDetector(
+                        onTap: () async {
+                          songname = "circles";
+                          await getData();
+                          playSong();
+                        },
+                        child: songsCard(4, art4, "Circles", "Post Malone")),
                     SizedBox(
                       height: 20,
                     ),
-                    songsCard(5, art5, "Intentions", "Justin Bieber"),
+                    GestureDetector(
+                        onTap: () async {
+                          songname = "Intentions";
+                          await getData();
+                          playSong();
+                        },
+                        child:
+                            songsCard(5, art5, "Intentions", "Justin Bieber")),
                   ],
                 ),
               ),
