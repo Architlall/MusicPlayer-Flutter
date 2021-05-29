@@ -4,15 +4,15 @@ import 'Model/listModel.dart';
 import './constants.dart';
 import './testplayer.dart';
 
-class Poplist extends StatefulWidget {
+class Countrylist extends StatefulWidget {
   final String passedSong;
 
-  const Poplist({Key key, this.passedSong}) : super(key: key);
+  const Countrylist({Key key, this.passedSong}) : super(key: key);
   @override
-  _PoplistState createState() => _PoplistState();
+  _CountrylistState createState() => _CountrylistState();
 }
 
-class _PoplistState extends State<Poplist> {
+class _CountrylistState extends State<Countrylist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +33,19 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-1.dzcdn.net/stream/c-1dad0ee9a3cc34130171fea60b07cdd7-7.mp3',
+                            'https://cdns-preview-e.dzcdn.net/stream/c-e61822859254c16c31b6e178c3a98834-4.mp3',
                         passedCover:
-                            'https://api.deezer.com/album/122664252/image',
-                        passedName: 'Harry Styles',
+                            'https://api.deezer.com/album/164589572/image',
+                        passedName: 'Tyler Rich',
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
-                        passedTitle: 'Watermelon Sugar',
+                        passedTitle: 'Feels like Home',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text('1. Watermelon Sugar    -     Harry Styles'),
+                  title: Text('1. Feels like Home   -    Tyler Rich'),
                 ),
               ),
               GestureDetector(
@@ -55,20 +55,19 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-5.dzcdn.net/stream/c-58c2f2bd81ee0d60e70310831737a910-6.mp3',
+                            'https://cdns-preview-9.dzcdn.net/stream/c-97fa832f7c4d1d3dfb941b08d86ce71c-10.mp3',
                         passedCover:
-                            'https://api.deezer.com/album/100856872/image',
-                        passedName: 'Camila Cabello and Shawn Mendes',
+                            'https://api.deezer.com/album/86994512/image',
+                        passedName: 'Florida Georgia Line',
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
-                        passedTitle: 'Señorita',
+                        passedTitle: 'Simple',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text(
-                      '2. Senorita   -    Shawn Mendes and Camila Cabello'),
+                  title: Text('2. Simple   -    Florida Georgia Line'),
                 ),
               ),
               GestureDetector(
@@ -78,19 +77,19 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-3.dzcdn.net/stream/c-31bb797f043b544baa792ccf827e5cd8-8.mp3',
+                            'https://cdns-preview-a.dzcdn.net/stream/c-ad9b160b0a6eba64e59ca874fc41d41d-4.mp3',
                         passedCover:
-                            'https://api.deezer.com/album/137217782/image',
-                        passedName: 'The Weeknd',
+                            'https://api.deezer.com/album/228464512/image',
+                        passedName: 'Tim Mcgraw',
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
-                        passedTitle: 'Save Your Tears',
+                        passedTitle: 'I called Mama',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text('3. Save Your Tears    -     The Weeknd'),
+                  title: Text('3. I called Mama   -    Tim Mcgraw'),
                 ),
               ),
             ]).toList(),

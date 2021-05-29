@@ -4,15 +4,15 @@ import 'Model/listModel.dart';
 import './constants.dart';
 import './testplayer.dart';
 
-class Poplist extends StatefulWidget {
+class Metallist extends StatefulWidget {
   final String passedSong;
 
-  const Poplist({Key key, this.passedSong}) : super(key: key);
+  const Metallist({Key key, this.passedSong}) : super(key: key);
   @override
-  _PoplistState createState() => _PoplistState();
+  _MetallistState createState() => _MetallistState();
 }
 
-class _PoplistState extends State<Poplist> {
+class _MetallistState extends State<Metallist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +33,19 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-1.dzcdn.net/stream/c-1dad0ee9a3cc34130171fea60b07cdd7-7.mp3',
+                            'https://cdns-preview-c.dzcdn.net/stream/c-c3b9551a5251328165b49d77d6597be4-5.mp3',
                         passedCover:
-                            'https://api.deezer.com/album/122664252/image',
-                        passedName: 'Harry Styles',
+                            'https://api.deezer.com/album/15485488/image',
+                        passedName: 'Black Sabbath',
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
-                        passedTitle: 'Watermelon Sugar',
+                        passedTitle: 'War Pigs',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text('1. Watermelon Sugar    -     Harry Styles'),
+                  title: Text('1. War Pigs   -    Black Sabbath'),
                 ),
               ),
               GestureDetector(
@@ -55,20 +55,18 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-5.dzcdn.net/stream/c-58c2f2bd81ee0d60e70310831737a910-6.mp3',
-                        passedCover:
-                            'https://api.deezer.com/album/100856872/image',
-                        passedName: 'Camila Cabello and Shawn Mendes',
+                            'https://cdns-preview-7.dzcdn.net/stream/c-7b10aab8626095cd79480ff2bf345ad5-5.mp3',
+                        passedCover: 'https://api.deezer.com/album/80396/image',
+                        passedName: 'Pantera',
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
-                        passedTitle: 'Señorita',
+                        passedTitle: 'Walk',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text(
-                      '2. Senorita   -    Shawn Mendes and Camila Cabello'),
+                  title: Text('2. Walk   -    Pantera'),
                 ),
               ),
               GestureDetector(
@@ -78,19 +76,19 @@ class _PoplistState extends State<Poplist> {
                     MaterialPageRoute(
                       builder: (_) => AudioPlayerUrl(
                         passedPreview:
-                            'https://cdns-preview-3.dzcdn.net/stream/c-31bb797f043b544baa792ccf827e5cd8-8.mp3',
+                            'https://cdns-preview-c.dzcdn.net/stream/c-c571577cdf89471b39a8ce1973498576-5.mp3',
                         passedCover:
-                            'https://api.deezer.com/album/137217782/image',
-                        passedName: 'The Weeknd',
+                            'https://api.deezer.com/album/303656/image',
+                        passedName: 'The Iron Maidens',
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
-                        passedTitle: 'Save Your Tears',
+                        passedTitle: 'Run to the Hills',
                       ),
                     ),
                   );
                 },
                 child: ListTile(
-                  title: Text('3. Save Your Tears    -     The Weeknd'),
+                  title: Text('3. Run to the Hills   -    The Iron Maidens'),
                 ),
               ),
             ]).toList(),

@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import './main.dart';
 import './constants.dart';
-import './poplist.dart';
+import 'searchlist.dart';
 
 class AudioPlayerUrl extends StatefulWidget {
   final String passedPreview;
@@ -135,10 +135,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             GestureDetector(
               child: cbutton(back),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                );
+                Navigator.pop(context);
               },
             ),
             Spacer(),

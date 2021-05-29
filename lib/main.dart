@@ -1,4 +1,7 @@
 import 'package:first_app/Model/listModel.dart';
+import 'package:first_app/country.dart';
+import 'package:first_app/heavymetal.dart';
+import 'package:first_app/hiphop.dart';
 
 import 'package:first_app/listview.dart';
 import 'package:first_app/testplayer.dart';
@@ -10,8 +13,8 @@ import './constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import './poplist.dart';
-
+import 'searchlist.dart';
+import 'poplist.dart';
 import './testplayer.dart';
 
 void main() {
@@ -21,7 +24,11 @@ void main() {
         '/': (context) => MyHomePage(),
         '/playing': (context) => AudioPlayerUrl(),
         '/listview': (context) => SongsWidget(),
-        '/poplist': (context) => PopList()
+        '/searchlist': (context) => SearchList(),
+        '/poplist': (context) => Poplist(),
+        '/hiphop': (context) => Hiphoplist(),
+        '/country': (context) => Countrylist(),
+        '/metal': (context) => Metallist()
       },
     ),
   );
@@ -52,7 +59,7 @@ class MyHomePageState extends State<MyHomePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => PopList(
+        builder: (_) => SearchList(
           passedLength: listModel.data.length,
           passedName: listModel.data,
           passedTitle: listModel.data,
@@ -200,13 +207,50 @@ class MyHomePageState extends State<MyHomePage> {
               child: Row(
                 children: <Widget>[
                   //Now we will call Genre card
-                  genreCard(pop, "Pop"),
-                  genreCard(hiphop, "HipHop"),
-                  genreCard(
-                    country,
-                    "Country",
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => Poplist(),
+                            ));
+                      },
+                      child: genreCard(pop, "Pop")),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Hiphoplist(),
+                          ));
+                    },
+                    child: genreCard(hiphop, "HipHop"),
                   ),
-                  genreCard(heavymetal, "Heavy Metal"),
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Countrylist(),
+                          ));
+                    },
+                    child: genreCard(
+                      country,
+                      "Country",
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Metallist(),
+                          ));
+                    },
+                    child: genreCard(heavymetal, "Heavy Metal"),
+                  ),
                 ],
               ),
             ),
