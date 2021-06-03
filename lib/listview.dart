@@ -1,6 +1,5 @@
-import './main.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/Model/listModel.dart';
+
 import 'package:first_app/Model/model.dart';
 
 class SongsWidget extends StatelessWidget {

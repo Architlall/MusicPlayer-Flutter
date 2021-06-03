@@ -26,6 +26,7 @@ const heavymetal = "assets/images/heavymetal.jpg";
 const country = "assets/images/country.jpg";
 const scard = "assets/images/scard.png";
 const gcard = "assets/images/gcard.png";
+const tcard = "assets/images/tcard.png";
 const art1 = "assets/images/Art1.jpg";
 const art2 = "assets/images/Art2.jpg";
 const art3 = "assets/images/Art3.jpg";

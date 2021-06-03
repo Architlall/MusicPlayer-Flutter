@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'Model/listModel.dart';
+
 import 'testplayer.dart';
 
 class SearchList extends StatefulWidget {

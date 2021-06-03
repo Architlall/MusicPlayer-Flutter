@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home.dart';
 
 class MainDrawer extends StatelessWidget {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -54,16 +58,19 @@ class MainDrawer extends StatelessWidget {
           onTap: null,
         ),
         ListTile(
-          tileColor: Colors.lime[50],
-          leading: Icon(Icons.arrow_back),
-          title: Text(
-            'Logout',
-            style: TextStyle(
-              fontSize: 18,
+            tileColor: Colors.lime[50],
+            leading: Icon(Icons.arrow_back),
+            title: Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 18,
+              ),
             ),
-          ),
-          onTap: null,
-        ),
+            onTap: () {
+              auth.signOut();
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            }),
       ],
     ));
   }
