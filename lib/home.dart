@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_app/testplayer.dart';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
@@ -53,6 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       .signInWithEmailAndPassword(
                           email: _email, password: _password)
                       .then((_) {
+                    final uid = auth.currentUser.uid;
+
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => MyHomePage()));
                   });
@@ -64,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     .createUserWithEmailAndPassword(
                         email: _email, password: _password)
                     .then((_) {
+                  final uid = auth.currentUser.uid;
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => MyHomePage()));
                 });

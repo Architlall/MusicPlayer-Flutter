@@ -21,6 +21,12 @@ import './testplayer.dart';
 import 'home.dart';
 
 class MyHomePage extends StatefulWidget {
+  final String uid;
+  MyHomePage({
+    Key key,
+    this.uid,
+  }) : super(key: key);
+
   @override
   MyHomePageState createState() => MyHomePageState();
 }

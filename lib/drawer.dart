@@ -1,3 +1,4 @@
+import 'package:first_app/playlist.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
@@ -44,7 +45,10 @@ class MainDrawer extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          onTap: null,
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Playlist()));
+          },
         ),
         ListTile(
           tileColor: Colors.lime[50],

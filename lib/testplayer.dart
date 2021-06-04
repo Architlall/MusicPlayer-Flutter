@@ -1,27 +1,38 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:first_app/playlist.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
+import 'home.dart';
 
 class AudioPlayerUrl extends StatefulWidget {
+  final String uid;
   final String passedPreview;
   final String passedCover;
   final String passedName;
   final String passedTitle;
   final String passedPicture;
-  const AudioPlayerUrl(
+  AudioPlayerUrl(
       {Key key,
+      this.uid,
       this.passedPreview,
       this.passedCover,
       this.passedName,
       this.passedPicture,
       this.passedTitle})
       : super(key: key);
+
   @override
   _AudioPlayerUrlState createState() => _AudioPlayerUrlState();
 }
 
 class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  // final User user = await auth.currentUser();
+  //   final uid = user.uid;
+
   /// For clarity, I added the terms compulsory and optional to certain sections
   /// to maintain clarity as to what is really needed for a functioning audio player
   /// and what is added for further interaction.
@@ -54,6 +65,15 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             seekToSec(value.toInt());
           }),
     );
+  }
+
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  void passtoplaylist() async {
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection(auth.currentUser.uid);
+
+    collectionReference.add({'Name': widget.passedTitle});
   }
 
   @override
@@ -144,7 +164,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                   color: cblue, fontSize: 17, fontWeight: FontWeight.w300),
             ),
             Spacer(),
-            cbutton(options),
+            // cbutton(options),
+            PopupMenuButton<int>(
+                color: Colors.blue[50],
+                onSelected: (item) => passtoplaylist(),
+                itemBuilder: (context) => [
+                      PopupMenuItem<int>(
+                          value: 0, child: Text('Add to playlist'))
+                    ]),
             SizedBox(
               width: 20,
             ),
