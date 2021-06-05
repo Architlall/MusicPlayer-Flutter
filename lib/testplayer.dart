@@ -144,111 +144,112 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blue[300],
         body: Column(
-      children: <Widget>[
-        SizedBox(
-          height: 30,
-        ),
-
-        //Now we will create Navigation Buttons
-        Row(
           children: <Widget>[
             SizedBox(
-              width: 10,
+              height: 30,
             ),
-            GestureDetector(
-              child: cbutton(back),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            Spacer(),
-            Text(
-              'NOW PLAYING',
-              style: TextStyle(
-                  color: cblue, fontSize: 17, fontWeight: FontWeight.w300),
-            ),
-            Spacer(),
-            // cbutton(options),
-            PopupMenuButton<int>(
-                color: Colors.blue[50],
-                onSelected: (item) => passtoplaylist(),
-                itemBuilder: (context) => [
-                      PopupMenuItem<int>(
-                          value: 0, child: Text('Add to playlist'))
-                    ]),
-            SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
 
-        //Now we will create Album Art Disk
-        Container(
-          padding: EdgeInsets.all(50),
-          height: 350,
-          width: 350,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(disk)),
-          ),
-          child: CircleAvatar(
-              backgroundImage: NetworkImage(widget.passedCover),
+            //Now we will create Navigation Buttons
+            Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  child: cbutton(back),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                Spacer(),
+                Text(
+                  'NOW PLAYING',
+                  style: TextStyle(
+                      color: cblue, fontSize: 17, fontWeight: FontWeight.w300),
+                ),
+                Spacer(),
+                // cbutton(options),
+                PopupMenuButton<int>(
+                    color: Colors.blue[100],
+                    onSelected: (item) => passtoplaylist(),
+                    itemBuilder: (context) => [
+                          PopupMenuItem<int>(
+                              value: 0, child: Text('Add to playlist'))
+                        ]),
+                SizedBox(
+                  width: 20,
+                ),
+              ],
+            ),
+
+            //Now we will create Album Art Disk
+            Container(
+              padding: EdgeInsets.all(50),
+              height: 350,
+              width: 350,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(disk)),
+              ),
               child: CircleAvatar(
-                backgroundColor: cwhite,
-                radius: 25,
-              )),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        // Now we will create Song Title and Artist name Texts
-        Text(
-          widget.passedTitle,
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          widget.passedName,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
-        ),
-        SizedBox(
-          height: 20,
-        ),
+                  backgroundImage: NetworkImage(widget.passedCover),
+                  child: CircleAvatar(
+                    backgroundColor: cwhite,
+                    radius: 25,
+                  )),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // Now we will create Song Title and Artist name Texts
+            Text(
+              widget.passedTitle,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.passedName,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-        SizedBox(
-          height: 20,
-        ),
+            SizedBox(
+              height: 20,
+            ),
 
-        SizedBox(
-          height: 10,
-        ),
+            SizedBox(
+              height: 10,
+            ),
 
-        /// Compulsory
-        IconButton(
-            iconSize: 50,
-            onPressed: () {
-              audioPlayerState == AudioPlayerState.PLAYING
-                  ? pauseMusic()
-                  : playMusic();
-            },
-            icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                ? Icons.pause_rounded
-                : Icons.play_arrow_rounded)),
+            /// Compulsory
+            IconButton(
+                iconSize: 50,
+                onPressed: () {
+                  audioPlayerState == AudioPlayerState.PLAYING
+                      ? pauseMusic()
+                      : playMusic();
+                },
+                icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
+                    ? Icons.pause_rounded
+                    : Icons.play_arrow_rounded)),
 
-        /// Optional
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(getTimeString(timeProgress)),
-            SizedBox(width: 20),
-            Container(width: 200, child: slider()),
-            SizedBox(width: 20),
-            Text(getTimeString(audioDuration))
+            /// Optional
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(getTimeString(timeProgress)),
+                SizedBox(width: 20),
+                Container(width: 200, child: slider()),
+                SizedBox(width: 20),
+                Text(getTimeString(audioDuration))
+              ],
+            )
           ],
-        )
-      ],
-    ));
+        ));
   }
 }

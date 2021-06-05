@@ -19,6 +19,7 @@ import 'searchlist.dart';
 import 'poplist.dart';
 import './testplayer.dart';
 import 'home.dart';
+import 'playlist.dart';
 
 class MyHomePage extends StatefulWidget {
   final String uid;
@@ -369,7 +370,10 @@ class MyHomePageState extends State<MyHomePage> {
                     list,
                     scale: 1.1,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Playlist()));
+                  },
                 ),
                 Image.asset(
                   podcast,
