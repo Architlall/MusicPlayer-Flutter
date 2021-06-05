@@ -257,70 +257,102 @@ class MyHomePageState extends State<MyHomePage> {
                     color: Colors.grey[800]),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             //Container For Trending Songs
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 330,
-              padding: EdgeInsets.fromLTRB(45, 30, 45, 25),
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(scard)),
-              ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: <Widget>[
-                    GestureDetector(
-                        onTap: () async {
-                          songname = "blinding lights";
-                          await getData();
-                          playSong();
-                        },
-                        child: songsCard(
-                            1, art1, "Blinding Lights", "The Weeknd")),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GestureDetector(
-                        onTap: () async {
-                          songname = "the box";
-                          await getData();
-                          playSong();
-                        },
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: <Widget>[
+                  GestureDetector(
+                      onTap: () async {
+                        songname = "blinding lights";
+                        await getData();
+                        playSong();
+                      },
+                      child: Container(
+                          color: Colors.blue[50],
+                          width: 370,
+                          height: 130,
+                          margin: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.fromLTRB(35, 25, 45, 25),
+                          child: songsCard(
+                              1, art1, "Blinding Lights", "The Weeknd"))),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      songname = "the box";
+                      await getData();
+                      playSong();
+                    },
+                    child: Container(
+                        color: Colors.blue[50],
+                        width: 370,
+                        margin: EdgeInsets.only(left: 10),
+                        height: 130,
+                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
                         child: songsCard(2, art2, "The Box", "Roddy Rich")),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GestureDetector(
-                        onTap: () async {
-                          songname = "dont start now";
-                          await getData();
-                          playSong();
-                        },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      songname = "dont start now";
+                      await getData();
+                      playSong();
+                    },
+                    child: Container(
+                        color: Colors.blue[50],
+                        width: 370,
+                        height: 130,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
                         child:
                             songsCard(3, art3, "Dont Start Now", "Dua Lipa")),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GestureDetector(
-                        onTap: () async {
-                          songname = "circles";
-                          await getData();
-                          playSong();
-                        },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      songname = "circles";
+                      await getData();
+                      playSong();
+                    },
+                    child: Container(
+                        color: Colors.blue[50],
+                        width: 370,
+                        height: 130,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
                         child: songsCard(4, art4, "Circles", "Post Malone")),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GestureDetector(
-                        onTap: () async {
-                          songname = "Intentions";
-                          await getData();
-                          playSong();
-                        },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      songname = "Intentions";
+                      await getData();
+                      playSong();
+                    },
+                    child: Container(
+                        color: Colors.blue[50],
+                        width: 370,
+                        height: 130,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
                         child:
                             songsCard(5, art5, "Intentions", "Justin Bieber")),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
               ),
             ),
 
