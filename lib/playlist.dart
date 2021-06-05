@@ -7,9 +7,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Playlist extends StatefulWidget {
+  final String passedName;
+  final String passedPreview;
+  final String passedCover;
   final String passedTitle;
   final String documentId;
-  const Playlist({Key key, this.passedTitle, this.documentId})
+  const Playlist(
+      {Key key,
+      this.passedName,
+      this.passedPreview,
+      this.passedCover,
+      this.passedTitle,
+      this.documentId})
       : super(key: key);
   @override
   _PlaylistState createState() => _PlaylistState();
@@ -21,10 +30,9 @@ class _PlaylistState extends State<Playlist> {
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection(auth.currentUser.uid);
 
-    final String id = auth.currentUser.uid;
-
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[800],
         title: Text('My playlist'),
       ),
       body: Column(children: [
@@ -41,8 +49,23 @@ class _PlaylistState extends State<Playlist> {
                     var Doc = snapshot.data.docs[index];
 
                     return ListTile(
-                      title: Text(
-                        Doc['Name'],
+                      title: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => AudioPlayerUrl(
+                                passedPreview: Doc['Preview'],
+                                passedCover: Doc['Cover'],
+                                passedName: Doc['ArtistName'],
+                                passedTitle: Doc['Name'],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          Doc['Name'],
+                        ),
                       ),
                       trailing: IconButton(
                         icon: Icon(Icons.delete),

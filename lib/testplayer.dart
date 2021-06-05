@@ -73,7 +73,12 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection(auth.currentUser.uid);
 
-    collectionReference.add({'Name': widget.passedTitle});
+    await collectionReference.add({
+      'Name': widget.passedTitle,
+      'Cover': widget.passedCover,
+      'ArtistName': widget.passedName,
+      'Preview': widget.passedPreview
+    });
   }
 
   @override

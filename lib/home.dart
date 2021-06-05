@@ -18,7 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        backgroundColor: Colors.grey[800],
+        title: Text('Login to Archify xD'),
       ),
       body: Column(
         children: [
@@ -48,26 +49,29 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             ElevatedButton(
-                child: Text('Signin'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                ),
+                child: Text('SignIn'),
                 onPressed: () {
                   auth
                       .signInWithEmailAndPassword(
                           email: _email, password: _password)
                       .then((_) {
-                    final uid = auth.currentUser.uid;
-
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => MyHomePage()));
                   });
                 }),
             ElevatedButton(
-              child: Text('Signup'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+              ),
+              child: Text('SignUp'),
               onPressed: () {
                 auth
                     .createUserWithEmailAndPassword(
                         email: _email, password: _password)
                     .then((_) {
-                  final uid = auth.currentUser.uid;
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => MyHomePage()));
                 });
