@@ -53,30 +53,52 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
                 ),
                 child: Text('SignIn'),
-                onPressed: () {
-                  auth
-                      .signInWithEmailAndPassword(
-                          email: _email, password: _password)
-                      .then((_) {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => MyHomePage()));
-                  });
+                onPressed: () async {
+                  try {
+                    await auth
+                        .signInWithEmailAndPassword(
+                            email: _email, password: _password)
+                        .then((_) {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => MyHomePage()));
+                    });
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'user-not-found') {
+                      final snackBar = SnackBar(
+                          content: Text('User not found, please sign up!'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  }
+
+                  //     .then((_) {
+                  //   Navigator.of(context).pushReplacement(
+                  //       MaterialPageRoute(builder: (context) => MyHomePage()));
+                  // });
                 }),
             ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
-              ),
-              child: Text('SignUp'),
-              onPressed: () {
-                auth
-                    .createUserWithEmailAndPassword(
-                        email: _email, password: _password)
-                    .then((_) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => MyHomePage()));
-                });
-              },
-            )
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                ),
+                child: Text('SignUp'),
+                onPressed: () async {
+                  try {
+                    await auth.createUserWithEmailAndPassword(
+                        email: _email, password: _password);
+                    //     .then((_) {
+                    //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //       builder: (context) => MyHomePage()));
+                    // });
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'email-already-in-use') {
+                      final snackBar = SnackBar(
+                          content: Text(
+                              'This user account already exists,please sign in!'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                }),
           ])
         ],
       ),

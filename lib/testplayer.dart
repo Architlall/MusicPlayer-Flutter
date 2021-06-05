@@ -79,6 +79,9 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
       'ArtistName': widget.passedName,
       'Preview': widget.passedPreview
     });
+    final snackBar = SnackBar(content: Text('Song added to Playlist'));
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -144,7 +147,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[300],
+        backgroundColor: Colors.blue[150],
         body: Column(
           children: <Widget>[
             SizedBox(
