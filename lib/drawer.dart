@@ -38,9 +38,9 @@ class MainDrawer extends StatelessWidget {
         ),
         ListTile(
           tileColor: Colors.lime[50],
-          leading: Icon(Icons.person),
+          leading: Icon(Icons.featured_play_list),
           title: Text(
-            'Your Profile',
+            'My Playlist',
             style: TextStyle(
               fontSize: 18,
             ),
