@@ -82,12 +82,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text('SignUp'),
                 onPressed: () async {
                   try {
-                    await auth.createUserWithEmailAndPassword(
-                        email: _email, password: _password);
-                    //     .then((_) {
-                    //   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    //       builder: (context) => MyHomePage()));
-                    // });
+                    await auth
+                        .createUserWithEmailAndPassword(
+                            email: _email, password: _password)
+                        .then((_) {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => MyHomePage()));
+                    });
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'email-already-in-use') {
                       final snackBar = SnackBar(
