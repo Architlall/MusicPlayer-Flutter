@@ -14,9 +14,9 @@ class _CountrylistState extends State<Countrylist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.black87,
         elevation: 30,
       ),
       body: ListView(

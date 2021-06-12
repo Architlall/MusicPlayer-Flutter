@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget genreCard(String img, String title) {
   return Container(
-    padding: EdgeInsets.all(30),
+    padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
     decoration: BoxDecoration(
       image: DecorationImage(image: AssetImage('assets/images/gcard.png')),
     ),

@@ -3,9 +3,6 @@ import 'package:first_app/country.dart';
 import 'package:first_app/heavymetal.dart';
 import 'package:first_app/hiphop.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/listview.dart';
 import 'package:first_app/testplayer.dart';
 import 'package:flutter/material.dart';
 import './drawer.dart';
@@ -18,7 +15,7 @@ import 'dart:convert';
 import 'searchlist.dart';
 import 'poplist.dart';
 import './testplayer.dart';
-import 'home.dart';
+
 import 'playlist.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -122,10 +119,9 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime[50],
       appBar: AppBar(
           title: cusSearchBar,
-          backgroundColor: Colors.grey[800],
+          backgroundColor: Colors.black87,
           elevation: 30.0,
           actions: <Widget>[
             // IconButton(
@@ -158,7 +154,9 @@ class MyHomePageState extends State<MyHomePage> {
               width: 150,
               child: TextField(
                 controller: songnamecon,
-                decoration: InputDecoration(hintText: 'Enter song or artist'),
+                decoration: InputDecoration(
+                    hintText: 'Enter song or artist',
+                    hintStyle: TextStyle(color: Colors.white)),
               ),
             ),
             SizedBox(

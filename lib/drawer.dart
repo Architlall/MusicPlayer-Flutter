@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
 
 class MainDrawer extends StatelessWidget {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MainDrawer extends StatelessWidget {
         Container(
           width: double.infinity,
           padding: EdgeInsets.all(20),
-          color: Colors.grey[800],
+          color: Colors.black87,
           child: Center(
             child: Column(
               children: <Widget>[
@@ -37,7 +37,7 @@ class MainDrawer extends StatelessWidget {
           ),
         ),
         ListTile(
-          tileColor: Colors.lime[50],
+          tileColor: Colors.white,
           leading: Icon(Icons.featured_play_list),
           title: Text(
             'My Playlist',
@@ -51,7 +51,7 @@ class MainDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          tileColor: Colors.lime[50],
+          tileColor: Colors.white,
           leading: Icon(Icons.settings),
           title: Text(
             'Settings',
@@ -62,7 +62,7 @@ class MainDrawer extends StatelessWidget {
           onTap: null,
         ),
         ListTile(
-            tileColor: Colors.lime[50],
+            tileColor: Colors.white,
             leading: Icon(Icons.arrow_back),
             title: Text(
               'Logout',

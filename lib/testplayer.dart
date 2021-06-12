@@ -147,8 +147,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[150],
-        body: Column(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.white70, Colors.blue]),
+        ),
+        child: Column(
           children: <Widget>[
             SizedBox(
               height: 30,
@@ -253,6 +259,8 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
               ],
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

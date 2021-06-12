@@ -20,7 +20,7 @@ class _SearchListState extends State<SearchList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.black87,
         elevation: 30,
       ),
       body: ListView.separated(
