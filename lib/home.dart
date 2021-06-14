@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.black87,
         title: Text('Login to Archify xD'),
       ),
       body: Column(
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                  backgroundColor: MaterialStateProperty.all(Colors.black87),
                 ),
                 child: Text('SignIn'),
                 onPressed: () async {
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 }),
             ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                  backgroundColor: MaterialStateProperty.all(Colors.black87),
                 ),
                 child: Text('SignUp'),
                 onPressed: () async {

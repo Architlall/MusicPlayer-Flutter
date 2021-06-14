@@ -1,3 +1,5 @@
+import 'package:first_app/playlistplayer.dart';
+import 'package:flutter_html/style.dart';
 import 'package:http/http.dart';
 import 'constants.dart';
 import 'main.dart';
@@ -31,17 +33,18 @@ class _PlaylistState extends State<Playlist> {
         FirebaseFirestore.instance.collection(auth.currentUser.uid);
 
     return Scaffold(
+      backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         title: Text('My playlist'),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.white70, Colors.blue]),
-        ),
+        // decoration: BoxDecoration(
+        //   gradient: LinearGradient(
+        //       begin: Alignment.topLeft,
+        //       end: Alignment.bottomRight,
+        //       colors: [Colors.white70, Colors.blue]),
+        // ),
         child: Column(children: [
           Container(
             padding: EdgeInsets.all(50),
@@ -52,7 +55,7 @@ class _PlaylistState extends State<Playlist> {
             ),
             child: CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://lh3.googleusercontent.com/proxy/JLBTMtgatW_sxPgx9LLHssN8o3koaRJpe1MLvKuW3oHORhFQaCZDqZCAUjY9BmBeZQHcKj0LS07zg8ow-z7ceLqfoKtayMYx6z0j_1Y'),
+                  'https://cdn.imgbin.com/2/5/12/imgbin-deezer-music-logo-playlist-deezer-zFGyeLgfh83Aga6AxUpkZfXaj.jpg'),
             ),
           ),
           SizedBox(
@@ -73,56 +76,46 @@ class _PlaylistState extends State<Playlist> {
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) {
                       var Doc = snapshot.data.docs[index];
+                      var DOCtoplayer = snapshot.data.docs;
 
-                      return ListTile(
-                        title: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => AudioPlayerUrl(
-                                  passedPreview: Doc['Preview'],
-                                  passedCover: Doc['Cover'],
-                                  passedName: Doc['ArtistName'],
-                                  passedTitle: Doc['Name'],
+                      return Card(
+                        color: Colors.teal[900],
+                        child: ListTile(
+                          title: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => AudioPlayerUrl(
+                                    passedPreview: Doc['Preview'],
+                                    passedCover: Doc['Cover'],
+                                    passedName: Doc['ArtistName'],
+                                    passedTitle: Doc['Name'],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            Doc['Name'],
+                              );
+                            },
+                            child: Text(
+                              Doc['Name'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(Doc['Cover']),
+                          ),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete, color: Colors.white),
+                            onPressed: () {
+                              snapshot.data.docs[index].reference.delete();
+                            },
                           ),
                         ),
-                        trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            snapshot.data.docs[index].reference.delete();
-                          },
-                        ),
+                      );
+                      Divider(color: Colors.black);
+                      SizedBox(
+                        height: 10,
                       );
                     });
-
-                // return ListView(
-                //   children: snapshot.data.docs
-                //       .map((e) => Column(
-                //             children: [
-                //               ListTile(
-                //                 title: Text(e['Name']),
-                //               ),
-                //               IconButton(
-                //                 icon: Icon(Icons.delete),
-                //                 onPressed: () {
-                //                   getUsers();
-                //                 },
-                //               ),
-                //               Divider(
-                //                 color: Colors.black.withOpacity(0.6),
-                //                 thickness: 2,
-                //               )
-                //             ],
-                //           ))
-                //       .toList(),
-                // );
               }
             },
           ))

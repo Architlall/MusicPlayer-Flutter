@@ -39,7 +39,7 @@ class MyHomePageState extends State<MyHomePage> {
           passedCover: listModel.data[0].album.cover,
           passedName: listModel.data[0].artist.name,
           passedPicture: listModel.data[0].artist.picture,
-          passedTitle: listModel.data[0].album.title,
+          passedTitle: listModel.data[0].title,
         ),
       ),
     );
@@ -119,6 +119,7 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black54,
       appBar: AppBar(
           title: cusSearchBar,
           backgroundColor: Colors.black87,
@@ -154,6 +155,7 @@ class MyHomePageState extends State<MyHomePage> {
               width: 150,
               child: TextField(
                 controller: songnamecon,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     hintText: 'Enter song or artist',
                     hintStyle: TextStyle(color: Colors.white)),
@@ -188,16 +190,15 @@ class MyHomePageState extends State<MyHomePage> {
                   letterSpacing: 3,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
-                  color: Colors.grey[800],
+                  color: Colors.white,
                 ),
               ),
             ),
-            ////Now we will create a Scroll views for different Genres
+
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: <Widget>[
-                  //Now we will call Genre card
                   GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -217,7 +218,6 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                     child: genreCard(hiphop, "HipHop"),
                   ),
-
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -231,7 +231,6 @@ class MyHomePageState extends State<MyHomePage> {
                       "Country",
                     ),
                   ),
-
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -253,7 +252,7 @@ class MyHomePageState extends State<MyHomePage> {
                     letterSpacing: 3,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
-                    color: Colors.grey[800]),
+                    color: Colors.white),
               ),
             ),
             SizedBox(
@@ -270,14 +269,17 @@ class MyHomePageState extends State<MyHomePage> {
                         await getData();
                         playSong();
                       },
-                      child: Container(
-                          color: Colors.blue[50],
-                          width: 370,
-                          height: 130,
-                          margin: EdgeInsets.only(left: 10),
-                          padding: EdgeInsets.fromLTRB(35, 25, 45, 25),
-                          child: songsCard(
-                              1, art1, "Blinding Lights", "The Weeknd"))),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Container(
+                            color: Colors.blue[50],
+                            width: 370,
+                            height: 120,
+                            margin: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.fromLTRB(35, 20, 45, 20),
+                            child: songsCard(
+                                1, art1, "Blinding Lights", "The Weeknd")),
+                      )),
                   SizedBox(
                     height: 10,
                   ),
@@ -291,8 +293,8 @@ class MyHomePageState extends State<MyHomePage> {
                         color: Colors.blue[50],
                         width: 370,
                         margin: EdgeInsets.only(left: 10),
-                        height: 130,
-                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
+                        height: 120,
+                        padding: EdgeInsets.fromLTRB(30, 20, 45, 20),
                         child: songsCard(2, art2, "The Box", "Roddy Rich")),
                   ),
                   SizedBox(
@@ -307,9 +309,9 @@ class MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         color: Colors.blue[50],
                         width: 370,
-                        height: 130,
+                        height: 120,
                         margin: EdgeInsets.only(left: 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
+                        padding: EdgeInsets.fromLTRB(30, 20, 45, 20),
                         child:
                             songsCard(3, art3, "Dont Start Now", "Dua Lipa")),
                   ),
@@ -325,9 +327,9 @@ class MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         color: Colors.blue[50],
                         width: 370,
-                        height: 130,
+                        height: 120,
                         margin: EdgeInsets.only(left: 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
+                        padding: EdgeInsets.fromLTRB(30, 20, 45, 20),
                         child: songsCard(4, art4, "Circles", "Post Malone")),
                   ),
                   SizedBox(
@@ -342,9 +344,9 @@ class MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         color: Colors.blue[50],
                         width: 370,
-                        height: 130,
+                        height: 120,
                         margin: EdgeInsets.only(left: 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 45, 25),
+                        padding: EdgeInsets.fromLTRB(30, 20, 45, 20),
                         child:
                             songsCard(5, art5, "Intentions", "Justin Bieber")),
                   ),

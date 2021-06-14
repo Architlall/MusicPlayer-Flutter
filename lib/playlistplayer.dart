@@ -6,14 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
 
-class AudioPlayerUrl extends StatefulWidget {
+class PlaylistPlayer extends StatefulWidget {
   final String uid;
-  final String passedPreview;
-  final String passedCover;
-  final String passedName;
-  final String passedTitle;
-  final String passedPicture;
-  AudioPlayerUrl(
+  var passedPreview;
+  var passedCover;
+  var passedName;
+  var passedTitle;
+  var passedPicture;
+  PlaylistPlayer(
       {Key key,
       this.uid,
       this.passedPreview,
@@ -24,10 +24,10 @@ class AudioPlayerUrl extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AudioPlayerUrlState createState() => _AudioPlayerUrlState();
+  _PlaylistPlayerState createState() => _PlaylistPlayerState();
 }
 
-class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
+class _PlaylistPlayerState extends State<PlaylistPlayer> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   // final User user = await auth.currentUser();
@@ -81,7 +81,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     });
 
     /// Optional
-    audioPlayer.setUrl(widget.passedPreview);
+    audioPlayer.setUrl(widget.passedPreview[0]);
     audioPlayer.onDurationChanged.listen((Duration duration) {
       setState(() {
         audioDuration = duration.inSeconds;
@@ -105,7 +105,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   /// Compulsory
   playMusic() async {
     // Add the parameter "isLocal: true" if you want to access a local file
-    await audioPlayer.play(widget.passedPreview);
+    await audioPlayer.play(widget.passedPreview[0]);
   }
 
   /// Compulsory
@@ -183,7 +183,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 image: DecorationImage(image: AssetImage(disk)),
               ),
               child: CircleAvatar(
-                  backgroundImage: NetworkImage(widget.passedCover),
+                  backgroundImage: NetworkImage(widget.passedCover[0]),
                   child: CircleAvatar(
                     backgroundColor: cwhite,
                     radius: 25,
@@ -194,14 +194,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             ),
 
             Text(
-              widget.passedTitle,
+              widget.passedTitle[0],
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              widget.passedName,
+              widget.passedName[0],
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
             ),
             SizedBox(
