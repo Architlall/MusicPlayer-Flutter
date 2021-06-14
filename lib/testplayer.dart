@@ -216,35 +216,50 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
               height: 10,
             ),
 
-            IconButton(
-                iconSize: 50,
-                onPressed: () {
-                  audioPlayerState == AudioPlayerState.PLAYING
-                      ? pauseMusic()
-                      : playMusic();
-                },
-                icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                    ? Icons.pause_rounded
-                    : Icons.play_arrow_rounded)),
-
-            SizedBox(
-              width: 20,
+            Row(
+              children: [
+                SizedBox(
+                  width: 157,
+                ),
+                IconButton(
+                    iconSize: 50,
+                    onPressed: () {
+                      audioPlayerState == AudioPlayerState.PLAYING
+                          ? pauseMusic()
+                          : playMusic();
+                    },
+                    icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded)),
+                SizedBox(
+                  width: 85,
+                ),
+                IconButton(
+                    iconSize: 25,
+                    onPressed: () {
+                      if (isRepeat == false) {
+                        audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+                        setState(() {
+                          isRepeat = true;
+                        });
+                      } else if (isRepeat == true) {
+                        audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
+                        setState(() {
+                          isRepeat = false;
+                        });
+                      }
+                    },
+                    icon: isRepeat == false
+                        ? Icon(
+                            Icons.loop,
+                            color: Colors.black87,
+                          )
+                        : Icon(
+                            Icons.loop,
+                            color: Colors.red[900],
+                          )),
+              ],
             ),
-
-            IconButton(
-                iconSize: 30,
-                onPressed: () {
-                  if (isRepeat == false) {
-                    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-                    setState(() {
-                      isRepeat = true;
-                    });
-                  }
-                },
-                icon: Icon(
-                  Icons.loop,
-                  color: Colors.black87,
-                )),
 
             /// Optional
             Row(
