@@ -245,8 +245,15 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             Row(
               children: [
                 SizedBox(
-                  width: 157,
+                  width: 97,
                 ),
+                IconButton(
+                    iconSize: 40,
+                    onPressed: () {
+                      audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                    },
+                    icon: Icon(Icons.fast_rewind_rounded)),
+                SizedBox(width: 20),
                 IconButton(
                     iconSize: 50,
                     onPressed: () {
@@ -257,6 +264,12 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                     icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
                         ? Icons.pause_rounded
                         : Icons.play_arrow_rounded)),
+                IconButton(
+                    iconSize: 40,
+                    onPressed: () {
+                      audioPlayer.setPlaybackRate(playbackRate: 1.3);
+                    },
+                    icon: Icon(Icons.fast_forward_rounded)),
                 SizedBox(
                   width: 85,
                 ),

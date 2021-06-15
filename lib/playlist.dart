@@ -79,7 +79,7 @@ class _PlaylistState extends State<Playlist> {
                       var DOCtoplayer = snapshot.data.docs;
 
                       return Card(
-                        color: Colors.teal[900],
+                        color: Colors.grey[900],
                         child: ListTile(
                           title: GestureDetector(
                             onTap: () {
