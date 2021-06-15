@@ -86,7 +86,7 @@ class _PlaylistState extends State<Playlist> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => AudioPlayerUrl(
+                                  builder: (_) => Playlistplay(
                                     passedPreview: Doc['Preview'],
                                     passedCover: Doc['Cover'],
                                     passedName: Doc['ArtistName'],

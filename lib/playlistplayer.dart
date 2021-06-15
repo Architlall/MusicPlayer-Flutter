@@ -5,15 +5,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
+import 'playlistplayer.dart';
 
-class PlaylistPlayer extends StatefulWidget {
+int count = 0;
+
+class Playlistplay extends StatefulWidget {
   final String uid;
-  var passedPreview;
-  var passedCover;
-  var passedName;
-  var passedTitle;
-  var passedPicture;
-  PlaylistPlayer(
+  final String passedPreview;
+  final String passedCover;
+  final String passedName;
+  final String passedTitle;
+  final String passedPicture;
+  Playlistplay(
       {Key key,
       this.uid,
       this.passedPreview,
@@ -24,10 +27,10 @@ class PlaylistPlayer extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PlaylistPlayerState createState() => _PlaylistPlayerState();
+  _PlaylistplayState createState() => _PlaylistplayState();
 }
 
-class _PlaylistPlayerState extends State<PlaylistPlayer> {
+class _PlaylistplayState extends State<Playlistplay> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   // final User user = await auth.currentUser();
@@ -69,6 +72,28 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  onComplete() {
+    print(count);
+    FirebaseFirestore.instance
+        .collection(auth.currentUser.uid)
+        .get()
+        .then((querySnapshot) {
+      var doc = querySnapshot.docs.elementAt(count);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => Playlistplay(
+            passedPreview: doc['Preview'],
+            passedCover: doc['Cover'],
+            passedName: doc['ArtistName'],
+            passedTitle: doc['Name'],
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -81,7 +106,7 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
     });
 
     /// Optional
-    audioPlayer.setUrl(widget.passedPreview[0]);
+    audioPlayer.setUrl(widget.passedPreview);
     audioPlayer.onDurationChanged.listen((Duration duration) {
       setState(() {
         audioDuration = duration.inSeconds;
@@ -91,6 +116,15 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
       setState(() {
         timeProgress = position.inSeconds;
       });
+    });
+    audioPlayer.onPlayerCompletion.listen((event) async {
+      print('hi');
+
+      setState(() {
+        count++;
+      });
+
+      onComplete();
     });
   }
 
@@ -105,7 +139,7 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
   /// Compulsory
   playMusic() async {
     // Add the parameter "isLocal: true" if you want to access a local file
-    await audioPlayer.play(widget.passedPreview[0]);
+    await audioPlayer.play(widget.passedPreview);
   }
 
   /// Compulsory
@@ -142,7 +176,6 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
             SizedBox(
               height: 30,
             ),
-
             Row(
               children: <Widget>[
                 SizedBox(
@@ -174,7 +207,6 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
                 ),
               ],
             ),
-
             Container(
               padding: EdgeInsets.all(50),
               height: 350,
@@ -183,7 +215,7 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
                 image: DecorationImage(image: AssetImage(disk)),
               ),
               child: CircleAvatar(
-                  backgroundImage: NetworkImage(widget.passedCover[0]),
+                  backgroundImage: NetworkImage(widget.passedCover),
                   child: CircleAvatar(
                     backgroundColor: cwhite,
                     radius: 25,
@@ -192,61 +224,70 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
             SizedBox(
               height: 10,
             ),
-
             Text(
-              widget.passedTitle[0],
+              widget.passedTitle,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              widget.passedName[0],
+              widget.passedName,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
             ),
             SizedBox(
               height: 20,
             ),
-
             SizedBox(
               height: 20,
             ),
-
             SizedBox(
               height: 10,
             ),
-
-            IconButton(
-                iconSize: 50,
-                onPressed: () {
-                  audioPlayerState == AudioPlayerState.PLAYING
-                      ? pauseMusic()
-                      : playMusic();
-                },
-                icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                    ? Icons.pause_rounded
-                    : Icons.play_arrow_rounded)),
-
-            SizedBox(
-              width: 20,
+            Row(
+              children: [
+                SizedBox(
+                  width: 157,
+                ),
+                IconButton(
+                    iconSize: 50,
+                    onPressed: () {
+                      audioPlayerState == AudioPlayerState.PLAYING
+                          ? pauseMusic()
+                          : playMusic();
+                    },
+                    icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded)),
+                SizedBox(
+                  width: 85,
+                ),
+                IconButton(
+                    iconSize: 25,
+                    onPressed: () {
+                      if (isRepeat == false) {
+                        audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+                        setState(() {
+                          isRepeat = true;
+                        });
+                      } else if (isRepeat == true) {
+                        audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
+                        setState(() {
+                          isRepeat = false;
+                        });
+                      }
+                    },
+                    icon: isRepeat == false
+                        ? Icon(
+                            Icons.loop,
+                            color: Colors.black87,
+                          )
+                        : Icon(
+                            Icons.loop,
+                            color: Colors.red[900],
+                          )),
+              ],
             ),
-
-            IconButton(
-                iconSize: 30,
-                onPressed: () {
-                  if (isRepeat == false) {
-                    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-                    setState(() {
-                      isRepeat = true;
-                    });
-                  }
-                },
-                icon: Icon(
-                  Icons.loop,
-                  color: Colors.black87,
-                )),
-
-            /// Optional
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -256,7 +297,7 @@ class _PlaylistPlayerState extends State<PlaylistPlayer> {
                 SizedBox(width: 20),
                 Text(getTimeString(audioDuration))
               ],
-            )
+            ),
           ],
         ),
       ),

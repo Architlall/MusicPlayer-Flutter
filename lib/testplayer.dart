@@ -6,9 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
 import 'playlistplayer.dart';
-import 'index.dart';
-
-int count = 0;
 
 class AudioPlayerUrl extends StatefulWidget {
   final String uid;
@@ -73,27 +70,27 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  onComplete() {
-    print(count);
-    FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
-        .get()
-        .then((querySnapshot) {
-      var doc = querySnapshot.docs.elementAt(count);
+  // onComplete() {
+  //   print(count);
+  //   FirebaseFirestore.instance
+  //       .collection(auth.currentUser.uid)
+  //       .get()
+  //       .then((querySnapshot) {
+  //     var doc = querySnapshot.docs.elementAt(count);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => AudioPlayerUrl(
-            passedPreview: doc['Preview'],
-            passedCover: doc['Cover'],
-            passedName: doc['ArtistName'],
-            passedTitle: doc['Name'],
-          ),
-        ),
-      );
-    });
-  }
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (_) => AudioPlayerUrl(
+  //           passedPreview: doc['Preview'],
+  //           passedCover: doc['Cover'],
+  //           passedName: doc['ArtistName'],
+  //           passedTitle: doc['Name'],
+  //         ),
+  //       ),
+  //     );
+  //   });
+  // }
 
   @override
   void initState() {
@@ -118,15 +115,15 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
         timeProgress = position.inSeconds;
       });
     });
-    audioPlayer.onPlayerCompletion.listen((event) async {
-      print('hi');
+    //   audioPlayer.onPlayerCompletion.listen((event) async {
+    //     print('hi');
 
-      setState(() {
-        count++;
-      });
+    //     setState(() {
+    //       count++;
+    //     });
 
-      onComplete();
-    });
+    //     onComplete();
+    //   });
   }
 
   /// Compulsory
