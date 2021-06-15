@@ -5,6 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
+import 'playlistplayer.dart';
+import 'index.dart';
+
+int count = 0;
 
 class AudioPlayerUrl extends StatefulWidget {
   final String uid;
@@ -69,6 +73,28 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  onComplete() {
+    print(count);
+    FirebaseFirestore.instance
+        .collection(auth.currentUser.uid)
+        .get()
+        .then((querySnapshot) {
+      var doc = querySnapshot.docs.elementAt(count);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => AudioPlayerUrl(
+            passedPreview: doc['Preview'],
+            passedCover: doc['Cover'],
+            passedName: doc['ArtistName'],
+            passedTitle: doc['Name'],
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -91,6 +117,15 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
       setState(() {
         timeProgress = position.inSeconds;
       });
+    });
+    audioPlayer.onPlayerCompletion.listen((event) async {
+      print('hi');
+
+      setState(() {
+        count++;
+      });
+
+      onComplete();
     });
   }
 
@@ -142,7 +177,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             SizedBox(
               height: 30,
             ),
-
             Row(
               children: <Widget>[
                 SizedBox(
@@ -174,7 +208,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 ),
               ],
             ),
-
             Container(
               padding: EdgeInsets.all(50),
               height: 350,
@@ -192,7 +225,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             SizedBox(
               height: 10,
             ),
-
             Text(
               widget.passedTitle,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
@@ -207,15 +239,12 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             SizedBox(
               height: 20,
             ),
-
             SizedBox(
               height: 20,
             ),
-
             SizedBox(
               height: 10,
             ),
-
             Row(
               children: [
                 SizedBox(
@@ -260,8 +289,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                           )),
               ],
             ),
-
-            /// Optional
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -271,7 +298,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 SizedBox(width: 20),
                 Text(getTimeString(audioDuration))
               ],
-            )
+            ),
           ],
         ),
       ),
