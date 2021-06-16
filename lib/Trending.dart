@@ -10,7 +10,10 @@ Widget songsCard(int sr, String img, String title, String artist) {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("$sr"),
+            Text(
+              "$sr",
+              style: TextStyle(color: Colors.white),
+            ),
             SizedBox(
               width: 20,
             ),
@@ -26,14 +29,20 @@ Widget songsCard(int sr, String img, String title, String artist) {
               children: <Widget>[
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
                   artist,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 13,
+                      color: Colors.white),
                 ),
                 SizedBox(width: 100)
               ],

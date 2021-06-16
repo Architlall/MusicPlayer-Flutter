@@ -6,8 +6,9 @@ part 'albumModel.g.dart';
 class AlbumModel {
   String title;
   String cover;
+  String cover_big;
 
-  AlbumModel({this.title, this.cover});
+  AlbumModel({this.title, this.cover, this.cover_big});
   factory AlbumModel.fromJson(Map<String, dynamic> json) =>
       _$AlbumModelFromJson(json);
   Map<String, dynamic> toJson() => _$AlbumModelToJson(this);

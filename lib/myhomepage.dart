@@ -36,12 +36,12 @@ class MyHomePageState extends State<MyHomePage> {
       context,
       MaterialPageRoute(
         builder: (_) => AudioPlayerUrl(
-          passedPreview: listModel.data[0].preview,
-          passedCover: listModel.data[0].album.cover,
-          passedName: listModel.data[0].artist.name,
-          passedPicture: listModel.data[0].artist.picture,
-          passedTitle: listModel.data[0].title,
-        ),
+            passedPreview: listModel.data[0].preview,
+            passedCover: listModel.data[0].album.cover,
+            passedName: listModel.data[0].artist.name,
+            passedPicture: listModel.data[0].artist.picture,
+            passedTitle: listModel.data[0].title,
+            passedCoverBig: listModel.data[0].album.cover_big),
       ),
     );
   }
@@ -231,10 +231,78 @@ class MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 30, top: 60),
               child: Text(
-                'TRENDING ALBUMS',
+                'BILLBOARD TRENDING',
+                style: TextStyle(
+                    letterSpacing: 3,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: <Widget>[
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => Poplist(),
+                            ));
+                      },
+                      child: genreCard(butter, "Butter")),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Hiphoplist(),
+                          ));
+                    },
+                    child: genreCard(good, "Good 4 U"),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Countrylist(),
+                          ));
+                    },
+                    child: genreCard(
+                      levitating,
+                      "Levitating",
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Metallist(),
+                          ));
+                    },
+                    child: genreCard(leave, "Leave the door open"),
+                  ),
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 30, top: 60),
+              child: Text(
+                'TRENDING SONGS',
                 style: TextStyle(
                     letterSpacing: 3,
                     fontSize: 20,
@@ -259,7 +327,7 @@ class MyHomePageState extends State<MyHomePage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: Container(
-                            color: Colors.blue[50],
+                            color: Colors.grey[900],
                             width: 370,
                             height: 120,
                             margin: EdgeInsets.only(left: 10),
@@ -277,7 +345,7 @@ class MyHomePageState extends State<MyHomePage> {
                       playSong();
                     },
                     child: Container(
-                        color: Colors.blue[50],
+                        color: Colors.grey[900],
                         width: 370,
                         margin: EdgeInsets.only(left: 10),
                         height: 120,
@@ -294,7 +362,7 @@ class MyHomePageState extends State<MyHomePage> {
                       playSong();
                     },
                     child: Container(
-                        color: Colors.blue[50],
+                        color: Colors.grey[900],
                         width: 370,
                         height: 120,
                         margin: EdgeInsets.only(left: 10),
@@ -312,7 +380,7 @@ class MyHomePageState extends State<MyHomePage> {
                       playSong();
                     },
                     child: Container(
-                        color: Colors.blue[50],
+                        color: Colors.grey[900],
                         width: 370,
                         height: 120,
                         margin: EdgeInsets.only(left: 10),
@@ -329,7 +397,7 @@ class MyHomePageState extends State<MyHomePage> {
                       playSong();
                     },
                     child: Container(
-                        color: Colors.blue[50],
+                        color: Colors.grey[900],
                         width: 370,
                         height: 120,
                         margin: EdgeInsets.only(left: 10),

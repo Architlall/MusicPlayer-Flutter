@@ -38,6 +38,8 @@ class _CountrylistState extends State<Countrylist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Feels like Home',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/67fac386ed40827f3d5dc4363a114d3b/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -60,6 +62,8 @@ class _CountrylistState extends State<Countrylist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Simple',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/dc076016ebcc167ba9591c68f5e36a97/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -82,6 +86,8 @@ class _CountrylistState extends State<Countrylist> {
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
                         passedTitle: 'I called Mama',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/07d48b9242e549a1ad2a582e3f09754e/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );

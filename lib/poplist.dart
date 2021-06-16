@@ -38,6 +38,8 @@ class _PoplistState extends State<Poplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Watermelon Sugar',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/346c524c15ecccbc4a8a78e8972a352c/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -60,6 +62,8 @@ class _PoplistState extends State<Poplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Señorita',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/4426e8a06d8d0cd96263094c6178bbf9/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -83,6 +87,8 @@ class _PoplistState extends State<Poplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
                         passedTitle: 'Save Your Tears',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/fd00ebd6d30d7253f813dba3bb1c66a9/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );

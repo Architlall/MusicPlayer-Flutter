@@ -37,6 +37,7 @@ class _SearchListState extends State<SearchList> {
                     passedName: widget.passedName[index].artist.name,
                     passedPicture: widget.passedName[index].artist.picture,
                     passedTitle: widget.passedName[index].title,
+                    passedCoverBig: widget.passedName[index].album.cover_big,
                   ),
                 ),
               );

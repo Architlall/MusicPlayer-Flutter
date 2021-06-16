@@ -38,6 +38,8 @@ class _HiphoplistState extends State<Hiphoplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'WHATS POPPIN',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/5957ab7f7899f13c8f04bcb308dddb69/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -60,6 +62,8 @@ class _HiphoplistState extends State<Hiphoplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Up',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/89396a49607a1d136e4e27658b045a7f/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -82,6 +86,8 @@ class _HiphoplistState extends State<Hiphoplist> {
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
                         passedTitle: 'ROCKSTAR',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/945d96da8abf5a9457974d83298ee384/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );

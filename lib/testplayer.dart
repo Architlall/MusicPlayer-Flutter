@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
 import 'playlistplayer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AudioPlayerUrl extends StatefulWidget {
   final String uid;
@@ -14,6 +15,7 @@ class AudioPlayerUrl extends StatefulWidget {
   final String passedName;
   final String passedTitle;
   final String passedPicture;
+  final String passedCoverBig;
   AudioPlayerUrl(
       {Key key,
       this.uid,
@@ -21,7 +23,8 @@ class AudioPlayerUrl extends StatefulWidget {
       this.passedCover,
       this.passedName,
       this.passedPicture,
-      this.passedTitle})
+      this.passedTitle,
+      this.passedCoverBig})
       : super(key: key);
 
   @override
@@ -63,7 +66,8 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
       'Name': widget.passedTitle,
       'Cover': widget.passedCover,
       'ArtistName': widget.passedName,
-      'Preview': widget.passedPreview
+      'Preview': widget.passedPreview,
+      'Cover_big': widget.passedCoverBig
     });
     final snackBar = SnackBar(content: Text('Song added to Playlist'));
 
@@ -164,10 +168,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.white70, Colors.blue]),
+          image: DecorationImage(
+            image: NetworkImage(widget.passedCoverBig),
+            fit: BoxFit.cover,
+          ),
+          // gradient: LinearGradient(
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     colors: [Colors.white70, Colors.blue]),
         ),
         child: Column(
           children: <Widget>[
@@ -189,12 +197,15 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 Text(
                   'NOW PLAYING',
                   style: TextStyle(
-                      color: cblue, fontSize: 17, fontWeight: FontWeight.w300),
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
                 ),
                 Spacer(),
                 // cbutton(options),
                 PopupMenuButton<int>(
-                    color: Colors.blue[100],
+                    elevation: 50,
+                    color: Colors.white,
                     onSelected: (item) => passtoplaylist(),
                     itemBuilder: (context) => [
                           PopupMenuItem<int>(
@@ -205,33 +216,65 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 ),
               ],
             ),
+            // Container(
+            //   padding: EdgeInsets.all(50),
+            //   height: 350,
+            //   width: 350,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(image: AssetImage(disk)),
+            //   ),
+            //   child: CircleAvatar(
+            //       backgroundImage: NetworkImage(widget.passedCover),
+            //       child: CircleAvatar(
+            //         backgroundColor: cwhite,
+            //         radius: 25,
+            //       )),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+
+            // Container(
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: NetworkImage(widget.passedCover),
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
+            SizedBox(
+              height: 300,
+            ),
             Container(
-              padding: EdgeInsets.all(50),
-              height: 350,
-              width: 350,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(disk)),
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.passedTitle,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white),
+                ),
               ),
-              child: CircleAvatar(
-                  backgroundImage: NetworkImage(widget.passedCover),
-                  child: CircleAvatar(
-                    backgroundColor: cwhite,
-                    radius: 25,
-                  )),
             ),
             SizedBox(
               height: 10,
             ),
-            Text(
-              widget.passedTitle,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.passedName,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.passedName,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white),
+                ),
+              ),
             ),
             SizedBox(
               height: 20,
@@ -240,38 +283,49 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
               height: 20,
             ),
             SizedBox(
-              height: 10,
+              height: 30,
             ),
             Row(
               children: [
                 SizedBox(
-                  width: 105,
+                  width: 95,
                 ),
                 IconButton(
                     iconSize: 40,
                     onPressed: () {
                       audioPlayer.setPlaybackRate(playbackRate: 0.7);
                     },
-                    icon: Icon(Icons.fast_rewind_rounded)),
+                    icon: Icon(Icons.fast_rewind_rounded),
+                    color: Colors.white),
                 SizedBox(width: 5),
                 IconButton(
-                    iconSize: 50,
-                    onPressed: () {
-                      audioPlayerState == AudioPlayerState.PLAYING
-                          ? pauseMusic()
-                          : playMusic();
-                    },
-                    icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                        ? Icons.pause_rounded
-                        : Icons.play_arrow_rounded)),
+                  iconSize: 60,
+                  onPressed: () {
+                    audioPlayerState == AudioPlayerState.PLAYING
+                        ? pauseMusic()
+                        : playMusic();
+                  },
+                  icon: audioPlayerState == AudioPlayerState.PLAYING
+                      ? FaIcon(
+                          FontAwesomeIcons.solidPauseCircle,
+                          color: Colors.blue[300],
+                        )
+                      : FaIcon(
+                          FontAwesomeIcons.solidPlayCircle,
+                          color: Colors.blue[300],
+                        ),
+                  color: Colors.white,
+                ),
                 IconButton(
-                    iconSize: 40,
-                    onPressed: () {
-                      audioPlayer.setPlaybackRate(playbackRate: 1.3);
-                    },
-                    icon: Icon(Icons.fast_forward_rounded)),
+                  iconSize: 40,
+                  onPressed: () {
+                    audioPlayer.setPlaybackRate(playbackRate: 1.3);
+                  },
+                  icon: Icon(Icons.fast_forward_rounded),
+                  color: Colors.white,
+                ),
                 SizedBox(
-                  width: 45,
+                  width: 35,
                 ),
                 IconButton(
                     iconSize: 25,
@@ -291,7 +345,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                     icon: isRepeat == false
                         ? Icon(
                             Icons.loop,
-                            color: Colors.black87,
+                            color: Colors.white,
                           )
                         : Icon(
                             Icons.loop,
@@ -302,13 +356,32 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(getTimeString(timeProgress)),
                 SizedBox(width: 20),
-                Container(width: 200, child: slider()),
+                Container(width: 340, child: slider()),
                 SizedBox(width: 20),
-                Text(getTimeString(audioDuration))
               ],
             ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  getTimeString(timeProgress),
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 290,
+                ),
+                Text(
+                  getTimeString(audioDuration),
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            )
           ],
         ),
       ),

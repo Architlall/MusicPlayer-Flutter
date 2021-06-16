@@ -14,13 +14,15 @@ class Playlist extends StatefulWidget {
   final String passedCover;
   final String passedTitle;
   final String documentId;
+  final String passedCoverBig;
   const Playlist(
       {Key key,
       this.passedName,
       this.passedPreview,
       this.passedCover,
       this.passedTitle,
-      this.documentId})
+      this.documentId,
+      this.passedCoverBig})
       : super(key: key);
   @override
   _PlaylistState createState() => _PlaylistState();
@@ -91,6 +93,7 @@ class _PlaylistState extends State<Playlist> {
                                     passedCover: Doc['Cover'],
                                     passedName: Doc['ArtistName'],
                                     passedTitle: Doc['Name'],
+                                    passedCoverBig: Doc['Cover_big'],
                                   ),
                                 ),
                               );

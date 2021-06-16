@@ -32,6 +32,10 @@ const art2 = "assets/images/Art2.jpg";
 const art3 = "assets/images/Art3.jpg";
 const art4 = "assets/images/Art4.jpg";
 const art5 = "assets/images/Art5.jpg";
+const butter = "assets/images/butter.png";
+const good = "assets/images/good.png";
+const levitating = "assets/images/levitating.png";
+const leave = "assets/images/leave.png";
 
 Widget cbutton(String symbol) {
   return Container(

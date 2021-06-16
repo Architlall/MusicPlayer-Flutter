@@ -38,6 +38,8 @@ class _MetallistState extends State<Metallist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'War Pigs',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/744d5d7a8867af18eca07628b42ac42f/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -59,6 +61,8 @@ class _MetallistState extends State<Metallist> {
                         passedPicture:
                             'https://api.deezer.com/artist/5313805/image',
                         passedTitle: 'Walk',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/ba6c7c231c21930465a4f51a41e3d5a5/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
@@ -81,6 +85,8 @@ class _MetallistState extends State<Metallist> {
                         passedPicture:
                             'https://api.deezer.com/artist/4050205/image',
                         passedTitle: 'Run to the Hills',
+                        passedCoverBig:
+                            'https://cdns-images.dzcdn.net/images/cover/ca87a7fc5b10f79866925db083d99ef0/500x500-000000-80-0-0.jpg',
                       ),
                     ),
                   );
