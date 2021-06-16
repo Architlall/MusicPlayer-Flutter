@@ -2,7 +2,7 @@ import 'package:first_app/Model/listModel.dart';
 import 'package:first_app/country.dart';
 import 'package:first_app/heavymetal.dart';
 import 'package:first_app/hiphop.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/testplayer.dart';
 import 'package:flutter/material.dart';
 import './drawer.dart';
@@ -15,8 +15,9 @@ import 'dart:convert';
 import 'searchlist.dart';
 import 'poplist.dart';
 import './testplayer.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'playlist.dart';
+import 'home.dart';
 
 class MyHomePage extends StatefulWidget {
   final String uid;
@@ -59,7 +60,7 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   var songname;
-
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final songnamecon = new TextEditingController();
 
   Icon cusIcon = Icon(Icons.search);
@@ -73,9 +74,8 @@ class MyHomePageState extends State<MyHomePage> {
         Uri.parse(
             "https://deezerdevs-deezer.p.rapidapi.com/search?q=$songname"),
         headers: {
-          "x-rapidapi-key":
-              "21957ec02fmsh1a4397d220eb721p1c836cjsn1809d58d20f2",
-          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          "x-rapidapi-key": dotenv.env['x-rapidapi-key'],
+          "x-rapidapi-host": dotenv.env['x-rapidapi-host']
         });
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
@@ -88,19 +88,6 @@ class MyHomePageState extends State<MyHomePage> {
     }
     print(listModel.data.length);
   }
-
-  // Future<List<Movie>> _fetchAllMovies() async {
-  //   final response = await http.get("http://www.omdbapi.com/?s=Batman&page=2&apikey=564727fa");
-
-  //   if(response.statusCode == 200) {
-  //     final result = jsonDecode(response.body);
-  //     Iterable list = result["Search"];
-  //     return list.map((movie) => Movie.fromJson(movie)).toList();
-  //   } else {
-  //     throw Exception("Failed to load movies!");
-  //   }
-
-  // }
 
 //   API Key: 65e3569778654a4bf5159ec1b5384870
 
@@ -174,7 +161,7 @@ class MyHomePageState extends State<MyHomePage> {
                 }),
           ]),
       drawer: MainDrawer(),
-      body: SingleChildScrollView(
+      body: (SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -356,34 +343,74 @@ class MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-
-            //Navigation Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Image.asset(
-                  home,
-                  scale: 1.1,
-                ),
-                GestureDetector(
-                  child: Image.asset(
-                    list,
-                    scale: 1.1,
-                  ),
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Playlist()));
-                  },
-                ),
-                Image.asset(
-                  podcast,
-                  scale: 1.1,
-                ),
-              ],
-            )
           ],
         ),
-      ),
+      )),
+      bottomNavigationBar: (Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Container(
+          color: Colors.grey[900],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              IconButton(
+                  icon: (Icon(
+                    Icons.home,
+                    color: Colors.white,
+                    size: 30,
+                  )),
+                  onPressed: null,
+                  splashColor: Colors.blue),
+              IconButton(
+                icon: (Icon(
+                  Icons.featured_play_list,
+                  color: Colors.white,
+                )),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Playlist()));
+                },
+                splashColor: Colors.blue,
+              ),
+              IconButton(
+                icon: (Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                )),
+                onPressed: () {
+                  auth.signOut();
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                },
+                splashColor: Colors.blue,
+              ),
+            ],
+            // child: Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: <Widget>[
+            //     Image.asset(
+            //       home,
+            //       scale: 1.1,
+            //     ),
+            //     GestureDetector(
+            //       child: Image.asset(
+            //         list,
+            //         scale: 1.1,
+            //       ),
+            //       onTap: () {
+            //         Navigator.of(context)
+            //             .push(MaterialPageRoute(builder: (context) => Playlist()));
+            //       },
+            //     ),
+            //     Image.asset(
+            //       podcast,
+            //       scale: 1.1,
+            //     ),
+            //   ],
+            // ),
+          ),
+        ),
+      )),
     );
   }
 }
