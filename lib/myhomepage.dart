@@ -254,31 +254,25 @@ class MyHomePageState extends State<MyHomePage> {
               child: Row(
                 children: <Widget>[
                   GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => Poplist(),
-                            ));
+                      onTap: () async {
+                        songname = "Butter";
+                        await getData();
+                        playSong();
                       },
                       child: genreCard(butter, "Butter")),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => Hiphoplist(),
-                          ));
+                    onTap: () async {
+                      songname = "Good 4 U";
+                      await getData();
+                      playSong();
                     },
                     child: genreCard(good, "Good 4 U"),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => Countrylist(),
-                          ));
+                    onTap: () async {
+                      songname = "Levitating";
+                      await getData();
+                      playSong();
                     },
                     child: genreCard(
                       levitating,
@@ -286,14 +280,12 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => Metallist(),
-                          ));
+                    onTap: () async {
+                      songname = "Peaches";
+                      await getData();
+                      playSong();
                     },
-                    child: genreCard(leave, "Leave the door open"),
+                    child: genreCard(peaches, "Peaches"),
                   ),
                 ],
               ),

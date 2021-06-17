@@ -291,12 +291,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                   width: 95,
                 ),
                 IconButton(
-                    iconSize: 40,
-                    onPressed: () {
-                      audioPlayer.setPlaybackRate(playbackRate: 0.7);
-                    },
-                    icon: Icon(Icons.fast_rewind_rounded),
-                    color: Colors.white),
+                  iconSize: 40,
+                  onPressed: () {
+                    audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                  },
+                  icon: Icon(Icons.fast_rewind_rounded),
+                  color: Colors.white,
+                  splashColor: Colors.blue,
+                ),
                 SizedBox(width: 5),
                 IconButton(
                   iconSize: 60,

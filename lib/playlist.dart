@@ -55,10 +55,7 @@ class _PlaylistState extends State<Playlist> {
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage(disk)),
             ),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://cdn.imgbin.com/2/5/12/imgbin-deezer-music-logo-playlist-deezer-zFGyeLgfh83Aga6AxUpkZfXaj.jpg'),
-            ),
+            child: CircleAvatar(backgroundImage: AssetImage(leave)),
           ),
           SizedBox(
             height: 10,

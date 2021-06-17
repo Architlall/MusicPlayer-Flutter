@@ -19,6 +19,7 @@ class _SearchListState extends State<SearchList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         elevation: 30,
@@ -43,16 +44,23 @@ class _SearchListState extends State<SearchList> {
               );
             },
             child: ListTile(
-              title: new Text((index + 1).toString() +
-                  '.   ' +
-                  widget.passedName[index].title +
-                  '   -   ' +
-                  widget.passedName[index].artist.name),
+              title: new Text(
+                (index + 1).toString() +
+                    '.   ' +
+                    widget.passedName[index].title +
+                    '   -   ' +
+                    widget.passedName[index].artist.name,
+                style: TextStyle(color: Colors.white),
+              ),
+              leading: CircleAvatar(
+                backgroundImage:
+                    NetworkImage(widget.passedName[index].album.cover),
+              ),
             ),
           );
         },
         separatorBuilder: (context, index) {
-          return Divider();
+          return Divider(color: Colors.grey[900]);
         },
       ),
     );
