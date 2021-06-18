@@ -14,10 +14,14 @@ class _HiphoplistState extends State<Hiphoplist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         elevation: 30,
+        title: Text(
+          "HipHop",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: ListView(
         children: ListTile.divideTiles(
@@ -45,7 +49,14 @@ class _HiphoplistState extends State<Hiphoplist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('1. WHATS POPPIN    -     Jack Harlow'),
+                  title: Text(
+                    '1. WHATS POPPIN    -     Jack Harlow',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/127437082/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -69,7 +80,14 @@ class _HiphoplistState extends State<Hiphoplist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('2. UP   -    Cardi B'),
+                  title: Text(
+                    '2. UP   -    Cardi B',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/205396982/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -93,7 +111,14 @@ class _HiphoplistState extends State<Hiphoplist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('3. ROCKSTAR   -    DaBaby'),
+                  title: Text(
+                    '3. ROCKSTAR   -    DaBaby',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/142409332/image"),
+                  ),
                 ),
               ),
             ]).toList(),

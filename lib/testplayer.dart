@@ -43,6 +43,8 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   int timeProgress = 0;
   int audioDuration = 0;
   bool isRepeat = false;
+  bool isFast = false;
+  bool isSlow = false;
 
   Widget slider() {
     return Container(
@@ -118,6 +120,7 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
       setState(() {
         timeProgress = position.inSeconds;
       });
+      playMusic();
     });
     //   audioPlayer.onPlayerCompletion.listen((event) async {
     //     print('hi');
@@ -291,14 +294,29 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                   width: 95,
                 ),
                 IconButton(
-                  iconSize: 40,
-                  onPressed: () {
-                    audioPlayer.setPlaybackRate(playbackRate: 0.7);
-                  },
-                  icon: Icon(Icons.fast_rewind_rounded),
-                  color: Colors.white,
-                  splashColor: Colors.blue,
-                ),
+                    iconSize: 40,
+                    onPressed: () {
+                      if (isSlow == false) {
+                        audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                        setState(() {
+                          isSlow = true;
+                        });
+                      } else if (isSlow == true) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                        setState(() {
+                          isSlow = false;
+                        });
+                      }
+                    },
+                    icon: isSlow == false
+                        ? Icon(
+                            Icons.fast_rewind_rounded,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.fast_rewind_rounded,
+                            color: Colors.red[900],
+                          )),
                 SizedBox(width: 5),
                 IconButton(
                   iconSize: 60,
@@ -319,13 +337,29 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                   color: Colors.white,
                 ),
                 IconButton(
-                  iconSize: 40,
-                  onPressed: () {
-                    audioPlayer.setPlaybackRate(playbackRate: 1.3);
-                  },
-                  icon: Icon(Icons.fast_forward_rounded),
-                  color: Colors.white,
-                ),
+                    iconSize: 40,
+                    onPressed: () {
+                      if (isFast == false) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.3);
+                        setState(() {
+                          isFast = true;
+                        });
+                      } else if (isFast == true) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                        setState(() {
+                          isFast = false;
+                        });
+                      }
+                    },
+                    icon: isFast == false
+                        ? Icon(
+                            Icons.fast_forward_rounded,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.fast_forward_rounded,
+                            color: Colors.red[900],
+                          )),
                 SizedBox(
                   width: 35,
                 ),

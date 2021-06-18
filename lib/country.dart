@@ -14,10 +14,14 @@ class _CountrylistState extends State<Countrylist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.black87,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         elevation: 30,
+        title: Text(
+          "Country",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: ListView(
         children: ListTile.divideTiles(
@@ -45,7 +49,14 @@ class _CountrylistState extends State<Countrylist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('1. Feels like Home   -    Tyler Rich'),
+                  title: Text(
+                    '1. Feels like Home   -    Tyler Rich',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/164589572/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -69,7 +80,14 @@ class _CountrylistState extends State<Countrylist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('2. Simple   -    Florida Georgia Line'),
+                  title: Text(
+                    '2. Simple   -    Florida Georgia Line',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/86994512/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -93,7 +111,14 @@ class _CountrylistState extends State<Countrylist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('3. I called Mama   -    Tim Mcgraw'),
+                  title: Text(
+                    '3. I called Mama   -    Tim Mcgraw',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/228464512/image"),
+                  ),
                 ),
               ),
             ]).toList(),

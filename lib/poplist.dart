@@ -14,10 +14,14 @@ class _PoplistState extends State<Poplist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.black87,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         elevation: 30,
+        title: Text(
+          "Pop",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: ListView(
         children: ListTile.divideTiles(
@@ -45,7 +49,14 @@ class _PoplistState extends State<Poplist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('1. Watermelon Sugar    -     Harry Styles'),
+                  title: Text(
+                    '1. Watermelon Sugar    -     Harry Styles',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/122664252/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -70,7 +81,13 @@ class _PoplistState extends State<Poplist> {
                 },
                 child: ListTile(
                   title: Text(
-                      '2. Senorita   -    Shawn Mendes and Camila Cabello'),
+                    '2. Senorita   -    Shawn Mendes and Camila Cabello',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/100856872/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -94,7 +111,14 @@ class _PoplistState extends State<Poplist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('3. Save Your Tears    -     The Weeknd'),
+                  title: Text(
+                    '3. Save Your Tears    -     The Weeknd',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/137217782/image"),
+                  ),
                 ),
               ),
             ]).toList(),

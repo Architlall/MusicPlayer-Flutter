@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
 import 'home.dart';
 import 'playlistplayer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 int count = 0;
 
@@ -44,6 +45,8 @@ class _PlaylistplayState extends State<Playlistplay> {
   int timeProgress = 0;
   int audioDuration = 0;
   bool isRepeat = false;
+  bool isFast = false;
+  bool isSlow = false;
 
   Widget slider() {
     return Container(
@@ -130,6 +133,7 @@ class _PlaylistplayState extends State<Playlistplay> {
 
       onComplete();
     });
+    playMusic();
   }
 
   /// Compulsory
@@ -283,31 +287,70 @@ class _PlaylistplayState extends State<Playlistplay> {
                 IconButton(
                     iconSize: 40,
                     onPressed: () {
-                      audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                      if (isSlow == false) {
+                        audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                        setState(() {
+                          isSlow = true;
+                        });
+                      } else if (isSlow == true) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                        setState(() {
+                          isSlow = false;
+                        });
+                      }
                     },
-                    icon: Icon(Icons.fast_rewind_rounded),
-                    color: Colors.white),
+                    icon: isSlow == false
+                        ? Icon(
+                            Icons.fast_rewind_rounded,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.fast_rewind_rounded,
+                            color: Colors.red[900],
+                          )),
                 SizedBox(width: 5),
                 IconButton(
-                  iconSize: 80,
+                  iconSize: 60,
                   onPressed: () {
                     audioPlayerState == AudioPlayerState.PLAYING
                         ? pauseMusic()
                         : playMusic();
                   },
-                  icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                      ? Icons.pause_circle_filled_sharp
-                      : Icons.play_circle_fill_rounded),
+                  icon: audioPlayerState == AudioPlayerState.PLAYING
+                      ? FaIcon(
+                          FontAwesomeIcons.solidPauseCircle,
+                          color: Colors.blue[300],
+                        )
+                      : FaIcon(
+                          FontAwesomeIcons.solidPlayCircle,
+                          color: Colors.blue[300],
+                        ),
                   color: Colors.white,
                 ),
                 IconButton(
-                  iconSize: 40,
-                  onPressed: () {
-                    audioPlayer.setPlaybackRate(playbackRate: 1.3);
-                  },
-                  icon: Icon(Icons.fast_forward_rounded),
-                  color: Colors.white,
-                ),
+                    iconSize: 40,
+                    onPressed: () {
+                      if (isFast == false) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.3);
+                        setState(() {
+                          isFast = true;
+                        });
+                      } else if (isFast == true) {
+                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                        setState(() {
+                          isFast = false;
+                        });
+                      }
+                    },
+                    icon: isFast == false
+                        ? Icon(
+                            Icons.fast_forward_rounded,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.fast_forward_rounded,
+                            color: Colors.red[900],
+                          )),
                 SizedBox(
                   width: 35,
                 ),

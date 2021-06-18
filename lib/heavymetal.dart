@@ -14,10 +14,14 @@ class _MetallistState extends State<Metallist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.black87,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         elevation: 30,
+        title: Text(
+          "Heavy Metal",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: ListView(
         children: ListTile.divideTiles(
@@ -45,7 +49,14 @@ class _MetallistState extends State<Metallist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('1. War Pigs   -    Black Sabbath'),
+                  title: Text(
+                    '1. War Pigs   -    Black Sabbath',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/15485488/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -68,7 +79,14 @@ class _MetallistState extends State<Metallist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('2. Walk   -    Pantera'),
+                  title: Text(
+                    '2. Walk   -    Pantera',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/80396/image"),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -92,7 +110,14 @@ class _MetallistState extends State<Metallist> {
                   );
                 },
                 child: ListTile(
-                  title: Text('3. Run to the Hills   -    The Iron Maidens'),
+                  title: Text(
+                    '3. Run to the Hills   -    The Iron Maidens',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://api.deezer.com/album/303656/image"),
+                  ),
                 ),
               ),
             ]).toList(),
