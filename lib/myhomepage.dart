@@ -89,26 +89,11 @@ class MyHomePageState extends State<MyHomePage> {
     print(listModel.data.length);
   }
 
-//   API Key: 65e3569778654a4bf5159ec1b5384870
-
-// Shared Secret: 48402e02320940c68965e434307b834a
-  // Future<String> getData() async {
-  //   http.Response response = await http
-  //       .get(Uri.parse("https://jsonplaceholder.typicode.com/posts"), headers: {
-  //     "Accept": "application/json",
-  //   });
-  //   List data = jsonDecode(response.body);
-  //   // print(data);
-  //   print(data[0]["title"]);
-  //   return (response.body);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-          title: cusSearchBar,
           backgroundColor: Colors.black87,
           elevation: 30.0,
           actions: <Widget>[
@@ -159,6 +144,11 @@ class MyHomePageState extends State<MyHomePage> {
                   await getData();
                   listBuilder();
                 }),
+
+            CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://www.clipartmax.com/png/middle/171-1717870_stockvader-predicted-cron-for-may-user-profile-icon-png.png'),
+            )
           ]),
       drawer: MainDrawer(),
       body: (SingleChildScrollView(
@@ -170,9 +160,9 @@ class MyHomePageState extends State<MyHomePage> {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                'POPULAR',
+                'DISCOVER',
                 style: TextStyle(
                   letterSpacing: 3,
                   fontSize: 20,
@@ -406,71 +396,71 @@ class MyHomePageState extends State<MyHomePage> {
           ],
         ),
       )),
-      bottomNavigationBar: (Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Container(
-          color: Colors.grey[900],
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              IconButton(
-                  icon: (Icon(
-                    Icons.home,
-                    color: Colors.white,
-                    size: 30,
-                  )),
-                  onPressed: null,
-                  splashColor: Colors.blue),
-              IconButton(
-                icon: (Icon(
-                  Icons.featured_play_list,
-                  color: Colors.white,
-                )),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Playlist()));
-                },
-                splashColor: Colors.blue,
-              ),
-              IconButton(
-                icon: (Icon(
-                  Icons.logout,
-                  color: Colors.white,
-                )),
-                onPressed: () {
-                  auth.signOut();
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                splashColor: Colors.blue,
-              ),
-            ],
-            // child: Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     Image.asset(
-            //       home,
-            //       scale: 1.1,
-            //     ),
-            //     GestureDetector(
-            //       child: Image.asset(
-            //         list,
-            //         scale: 1.1,
-            //       ),
-            //       onTap: () {
-            //         Navigator.of(context)
-            //             .push(MaterialPageRoute(builder: (context) => Playlist()));
-            //       },
-            //     ),
-            //     Image.asset(
-            //       podcast,
-            //       scale: 1.1,
-            //     ),
-            //   ],
-            // ),
-          ),
-        ),
-      )),
+      // bottomNavigationBar: (Padding(
+      //   padding: EdgeInsets.all(8.0),
+      //   child: Container(
+      //     color: Colors.grey[900],
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //       children: <Widget>[
+      //         IconButton(
+      //             icon: (Icon(
+      //               Icons.home,
+      //               color: Colors.white,
+      //               size: 30,
+      //             )),
+      //             onPressed: null,
+      //             splashColor: Colors.blue),
+      //         IconButton(
+      //           icon: (Icon(
+      //             Icons.featured_play_list,
+      //             color: Colors.white,
+      //           )),
+      //           onPressed: () {
+      //             Navigator.of(context).push(
+      //                 MaterialPageRoute(builder: (context) => Playlist()));
+      //           },
+      //           splashColor: Colors.blue,
+      //         ),
+      //         IconButton(
+      //           icon: (Icon(
+      //             Icons.logout,
+      //             color: Colors.white,
+      //           )),
+      //           onPressed: () {
+      //             auth.signOut();
+      //             Navigator.of(context).pushReplacement(
+      //                 MaterialPageRoute(builder: (context) => LoginScreen()));
+      //           },
+      //           splashColor: Colors.blue,
+      //         ),
+      // ],
+      // child: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: <Widget>[
+      //     Image.asset(
+      //       home,
+      //       scale: 1.1,
+      //     ),
+      //     GestureDetector(
+      //       child: Image.asset(
+      //         list,
+      //         scale: 1.1,
+      //       ),
+      //       onTap: () {
+      //         Navigator.of(context)
+      //             .push(MaterialPageRoute(builder: (context) => Playlist()));
+      //       },
+      //     ),
+      //     Image.asset(
+      //       podcast,
+      //       scale: 1.1,
+      //     ),
+      //   ],
+      //       // ),
+      //     ),
+      //   ),
+      // )),
     );
   }
 }

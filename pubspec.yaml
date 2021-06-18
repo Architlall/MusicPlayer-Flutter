@@ -48,6 +48,7 @@ dependencies:
   cloud_firestore: 
   flutter_dotenv: ^5.0.0
   font_awesome_flutter: ^9.1.0
+  google_fonts: ^1.1.2
   
   
 

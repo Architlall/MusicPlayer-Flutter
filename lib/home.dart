@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/testplayer.dart';
+
 import 'package:flutter/material.dart';
 
-import 'main.dart';
 import './myhomepage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
-                    child: Text('SignIn'),
+                    child: Text('Log In'),
                     onPressed: () async {
                       try {
                         await auth
@@ -94,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
-                    child: Text('SignUp'),
+                    child: Text('Sign Up'),
                     onPressed: () async {
                       try {
                         await auth

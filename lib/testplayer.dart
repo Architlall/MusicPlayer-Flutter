@@ -1,11 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:first_app/playlist.dart';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
-import 'home.dart';
-import 'playlistplayer.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AudioPlayerUrl extends StatefulWidget {
@@ -76,28 +75,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  // onComplete() {
-  //   print(count);
-  //   FirebaseFirestore.instance
-  //       .collection(auth.currentUser.uid)
-  //       .get()
-  //       .then((querySnapshot) {
-  //     var doc = querySnapshot.docs.elementAt(count);
-
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (_) => AudioPlayerUrl(
-  //           passedPreview: doc['Preview'],
-  //           passedCover: doc['Cover'],
-  //           passedName: doc['ArtistName'],
-  //           passedTitle: doc['Name'],
-  //         ),
-  //       ),
-  //     );
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -122,15 +99,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
       });
       playMusic();
     });
-    //   audioPlayer.onPlayerCompletion.listen((event) async {
-    //     print('hi');
-
-    //     setState(() {
-    //       count++;
-    //     });
-
-    //     onComplete();
-    //   });
   }
 
   /// Compulsory
@@ -143,7 +111,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
 
   /// Compulsory
   playMusic() async {
-    // Add the parameter "isLocal: true" if you want to access a local file
     await audioPlayer.play(widget.passedPreview);
   }
 
@@ -155,15 +122,14 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
   /// Optional
   void seekToSec(int sec) {
     Duration newPos = Duration(seconds: sec);
-    audioPlayer
-        .seek(newPos); // Jumps to the given position within the audio file
+    audioPlayer.seek(newPos);
   }
 
   String getTimeString(int seconds) {
     String minuteString =
         '${(seconds / 60).floor() < 10 ? 0 : ''}${(seconds / 60).floor()}';
     String secondString = '${seconds % 60 < 10 ? 0 : ''}${seconds % 60}';
-    return '$minuteString:$secondString'; // Returns a string with the format mm:ss
+    return '$minuteString:$secondString';
   }
 
   @override
@@ -175,10 +141,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
             image: NetworkImage(widget.passedCoverBig),
             fit: BoxFit.cover,
           ),
-          // gradient: LinearGradient(
-          //     begin: Alignment.topLeft,
-          //     end: Alignment.bottomRight,
-          //     colors: [Colors.white70, Colors.blue]),
         ),
         child: Column(
           children: <Widget>[
@@ -205,7 +167,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                       fontWeight: FontWeight.w500),
                 ),
                 Spacer(),
-                // cbutton(options),
                 PopupMenuButton<int>(
                     elevation: 50,
                     color: Colors.white,
@@ -219,32 +180,6 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 ),
               ],
             ),
-            // Container(
-            //   padding: EdgeInsets.all(50),
-            //   height: 350,
-            //   width: 350,
-            //   decoration: BoxDecoration(
-            //     image: DecorationImage(image: AssetImage(disk)),
-            //   ),
-            //   child: CircleAvatar(
-            //       backgroundImage: NetworkImage(widget.passedCover),
-            //       child: CircleAvatar(
-            //         backgroundColor: cwhite,
-            //         radius: 25,
-            //       )),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-
-            // Container(
-            //   decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //       image: NetworkImage(widget.passedCover),
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
             SizedBox(
               height: 300,
             ),
@@ -296,16 +231,18 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 IconButton(
                     iconSize: 40,
                     onPressed: () {
-                      if (isSlow == false) {
-                        audioPlayer.setPlaybackRate(playbackRate: 0.7);
-                        setState(() {
-                          isSlow = true;
-                        });
-                      } else if (isSlow == true) {
-                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
-                        setState(() {
-                          isSlow = false;
-                        });
+                      if (audioPlayerState == AudioPlayerState.PLAYING) {
+                        if (isSlow == false) {
+                          audioPlayer.setPlaybackRate(playbackRate: 0.7);
+                          setState(() {
+                            isSlow = true;
+                          });
+                        } else if (isSlow == true) {
+                          audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                          setState(() {
+                            isSlow = false;
+                          });
+                        }
                       }
                     },
                     icon: isSlow == false
@@ -339,16 +276,18 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                 IconButton(
                     iconSize: 40,
                     onPressed: () {
-                      if (isFast == false) {
-                        audioPlayer.setPlaybackRate(playbackRate: 1.3);
-                        setState(() {
-                          isFast = true;
-                        });
-                      } else if (isFast == true) {
-                        audioPlayer.setPlaybackRate(playbackRate: 1.0);
-                        setState(() {
-                          isFast = false;
-                        });
+                      if (audioPlayerState == AudioPlayerState.PLAYING) {
+                        if (isFast == false) {
+                          audioPlayer.setPlaybackRate(playbackRate: 1.3);
+                          setState(() {
+                            isFast = true;
+                          });
+                        } else if (isFast == true) {
+                          audioPlayer.setPlaybackRate(playbackRate: 1.0);
+                          setState(() {
+                            isFast = false;
+                          });
+                        }
                       }
                     },
                     icon: isFast == false

@@ -1,10 +1,9 @@
 import 'package:first_app/playlistplayer.dart';
-import 'package:flutter_html/style.dart';
-import 'package:http/http.dart';
+
 import 'constants.dart';
-import 'main.dart';
+
 import 'package:flutter/material.dart';
-import 'testplayer.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -41,12 +40,6 @@ class _PlaylistState extends State<Playlist> {
         title: Text('My playlist'),
       ),
       body: Container(
-        // decoration: BoxDecoration(
-        //   gradient: LinearGradient(
-        //       begin: Alignment.topLeft,
-        //       end: Alignment.bottomRight,
-        //       colors: [Colors.white70, Colors.blue]),
-        // ),
         child: Column(children: [
           Container(
             padding: EdgeInsets.all(50),
@@ -75,7 +68,6 @@ class _PlaylistState extends State<Playlist> {
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) {
                       var Doc = snapshot.data.docs[index];
-                      var DOCtoplayer = snapshot.data.docs;
 
                       return Card(
                         color: Colors.grey[900],
@@ -96,7 +88,7 @@ class _PlaylistState extends State<Playlist> {
                               );
                             },
                             child: Text(
-                              Doc['Name'],
+                              Doc['Name'] + "   -   " + Doc['ArtistName'],
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -110,10 +102,6 @@ class _PlaylistState extends State<Playlist> {
                             },
                           ),
                         ),
-                      );
-                      Divider(color: Colors.black);
-                      SizedBox(
-                        height: 10,
                       );
                     });
               }

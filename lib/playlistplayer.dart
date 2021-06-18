@@ -1,11 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:first_app/playlist.dart';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './constants.dart';
-import 'home.dart';
-import 'playlistplayer.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 int count = 0;
@@ -35,9 +34,6 @@ class Playlistplay extends StatefulWidget {
 
 class _PlaylistplayState extends State<Playlistplay> {
   FirebaseAuth auth = FirebaseAuth.instance;
-
-  // final User user = await auth.currentUser();
-  //   final uid = user.uid;
 
   AudioPlayer audioPlayer = AudioPlayer();
   AudioPlayerState audioPlayerState = AudioPlayerState.PAUSED;
@@ -144,29 +140,24 @@ class _PlaylistplayState extends State<Playlistplay> {
     super.dispose();
   }
 
-  /// Compulsory
   playMusic() async {
-    // Add the parameter "isLocal: true" if you want to access a local file
     await audioPlayer.play(widget.passedPreview);
   }
 
-  /// Compulsory
   pauseMusic() async {
     await audioPlayer.pause();
   }
 
-  /// Optional
   void seekToSec(int sec) {
     Duration newPos = Duration(seconds: sec);
-    audioPlayer
-        .seek(newPos); // Jumps to the given position within the audio file
+    audioPlayer.seek(newPos);
   }
 
   String getTimeString(int seconds) {
     String minuteString =
         '${(seconds / 60).floor() < 10 ? 0 : ''}${(seconds / 60).floor()}';
     String secondString = '${seconds % 60 < 10 ? 0 : ''}${seconds % 60}';
-    return '$minuteString:$secondString'; // Returns a string with the format mm:ss
+    return '$minuteString:$secondString';
   }
 
   @override
@@ -178,10 +169,6 @@ class _PlaylistplayState extends State<Playlistplay> {
             image: NetworkImage(widget.passedCoverBig),
             fit: BoxFit.cover,
           ),
-          // gradient: LinearGradient(
-          //     begin: Alignment.topLeft,
-          //     end: Alignment.bottomRight,
-          //     colors: [Colors.white70, Colors.blue]),
         ),
         child: Column(
           children: <Widget>[
@@ -206,7 +193,6 @@ class _PlaylistplayState extends State<Playlistplay> {
                       color: cblue, fontSize: 17, fontWeight: FontWeight.w300),
                 ),
                 Spacer(),
-                // cbutton(options),
                 PopupMenuButton<int>(
                     color: Colors.blue[100],
                     onSelected: (item) => passtoplaylist(),
@@ -219,23 +205,6 @@ class _PlaylistplayState extends State<Playlistplay> {
                 ),
               ],
             ),
-            // Container(
-            //   padding: EdgeInsets.all(50),
-            //   height: 350,
-            //   width: 350,
-            //   decoration: BoxDecoration(
-            //     image: DecorationImage(image: AssetImage(disk)),
-            //   ),
-            //   child: CircleAvatar(
-            //       backgroundImage: NetworkImage(widget.passedCover),
-            //       child: CircleAvatar(
-            //         backgroundColor: cwhite,
-            //         radius: 25,
-            //       )),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
             SizedBox(
               height: 300,
             ),
