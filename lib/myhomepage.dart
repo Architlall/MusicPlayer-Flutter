@@ -16,8 +16,7 @@ import 'searchlist.dart';
 import 'poplist.dart';
 import './testplayer.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'playlist.dart';
-import 'home.dart';
+import 'billboard.dart';
 
 class MyHomePage extends StatefulWidget {
   final String uid;
@@ -147,7 +146,7 @@ class MyHomePageState extends State<MyHomePage> {
 
             CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://www.clipartmax.com/png/middle/171-1717870_stockvader-predicted-cron-for-may-user-profile-icon-png.png'),
+                  'https://lh3.googleusercontent.com/proxy/HJ3BHsyUj4xdjNIcm0QyZTJa8CS5YTLGzJQD8wx2bBlh42h-WkbL4eCTP3zW8SRr9gWvpSHP5ApbmnBDjbm-O0KascI3eMrQyOFAejTbq8Ffa7O6l6wx'),
             )
           ]),
       drawer: MainDrawer(),
@@ -236,7 +235,7 @@ class MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
 
             SingleChildScrollView(
@@ -249,14 +248,14 @@ class MyHomePageState extends State<MyHomePage> {
                         await getData();
                         playSong();
                       },
-                      child: genreCard(butter, "Butter")),
+                      child: billboardCard(butter, "Butter", "BTS")),
                   GestureDetector(
                     onTap: () async {
                       songname = "Good 4 U";
                       await getData();
                       playSong();
                     },
-                    child: genreCard(good, "Good 4 U"),
+                    child: billboardCard(good, "Good 4 U", "Olivia Rodrigo"),
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -264,10 +263,7 @@ class MyHomePageState extends State<MyHomePage> {
                       await getData();
                       playSong();
                     },
-                    child: genreCard(
-                      levitating,
-                      "Levitating",
-                    ),
+                    child: billboardCard(levitating, "Levitating", "Dua Lipa"),
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -275,7 +271,7 @@ class MyHomePageState extends State<MyHomePage> {
                       await getData();
                       playSong();
                     },
-                    child: genreCard(peaches, "Peaches"),
+                    child: billboardCard(peaches, "Peaches", "Justin Bieber"),
                   ),
                 ],
               ),

@@ -28,17 +28,49 @@ class Playlist extends StatefulWidget {
 }
 
 class _PlaylistState extends State<Playlist> {
+  int count;
+  int index = 0;
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection(auth.currentUser.uid);
+    Queuesongs() {
+      StreamBuilder(
+          stream: collectionReference.snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData) {
+              count = snapshot.data.docs.length;
+              var Doc = snapshot.data.docs[index];
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Playlistplay(
+                    passedPreview: Doc['Preview'],
+                    passedCover: Doc['Cover'],
+                    passedName: Doc['ArtistName'],
+                    passedTitle: Doc['Name'],
+                    passedCoverBig: Doc['Cover_big'],
+                  ),
+                ),
+              );
+            }
+          });
+    }
 
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        backgroundColor: Colors.black87,
-        title: Text('My playlist'),
-      ),
+          backgroundColor: Colors.black87,
+          title: Text('           My playlist'),
+          actions: <Widget>[
+            PopupMenuButton<int>(
+                elevation: 50,
+                color: Colors.white,
+                onSelected: (item) => Queuesongs(),
+                itemBuilder: (context) =>
+                    [PopupMenuItem<int>(value: 0, child: Text('Queue All'))]),
+          ]),
       body: Container(
         child: Column(children: [
           Container(
@@ -59,54 +91,54 @@ class _PlaylistState extends State<Playlist> {
           ),
           Expanded(
               child: StreamBuilder(
-            // stream: collectionReference.snapshots(),
-            stream: collectionReference.snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (context, index) {
-                      var Doc = snapshot.data.docs[index];
+                  // stream: collectionReference.snapshots(),
+                  stream: collectionReference.snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: snapshot.data.docs.length,
+                          itemBuilder: (context, index) {
+                            var Doc = snapshot.data.docs[index];
 
-                      return Card(
-                        color: Colors.grey[900],
-                        child: ListTile(
-                          title: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => Playlistplay(
-                                    passedPreview: Doc['Preview'],
-                                    passedCover: Doc['Cover'],
-                                    passedName: Doc['ArtistName'],
-                                    passedTitle: Doc['Name'],
-                                    passedCoverBig: Doc['Cover_big'],
+                            return Card(
+                              color: Colors.grey[900],
+                              child: ListTile(
+                                title: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => Playlistplay(
+                                          passedPreview: Doc['Preview'],
+                                          passedCover: Doc['Cover'],
+                                          passedName: Doc['ArtistName'],
+                                          passedTitle: Doc['Name'],
+                                          passedCoverBig: Doc['Cover_big'],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    Doc['Name'] + "   -   " + Doc['ArtistName'],
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                              );
-                            },
-                            child: Text(
-                              Doc['Name'] + "   -   " + Doc['ArtistName'],
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(Doc['Cover']),
-                          ),
-                          trailing: IconButton(
-                            icon: Icon(Icons.delete, color: Colors.white),
-                            onPressed: () {
-                              snapshot.data.docs[index].reference.delete();
-                            },
-                          ),
-                        ),
-                      );
-                    });
-              }
-            },
-          ))
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(Doc['Cover']),
+                                ),
+                                trailing: IconButton(
+                                  icon: Icon(Icons.delete, color: Colors.white),
+                                  onPressed: () {
+                                    snapshot.data.docs[index].reference
+                                        .delete();
+                                  },
+                                ),
+                              ),
+                            );
+                          });
+                    }
+                  }))
         ]),
       ),
     );

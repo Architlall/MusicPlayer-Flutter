@@ -30,8 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 270, 8, 8),
+              SizedBox(
+                height: 262,
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(15, 8, 8, 8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.blue)),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(color: Colors.white),
@@ -45,8 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-              Padding(
+              SizedBox(
+                height: 15,
+              ),
+              Container(
                 padding: const EdgeInsets.fromLTRB(15, 8, 8, 8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.blue)),
                 child: TextField(
                   obscureText: true,
                   style: TextStyle(color: Colors.white),
@@ -83,11 +95,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       }
-
-                      //     .then((_) {
-                      //   Navigator.of(context).pushReplacement(
-                      //       MaterialPageRoute(builder: (context) => MyHomePage()));
-                      // });
                     }),
                 ElevatedButton(
                     style: ButtonStyle(
