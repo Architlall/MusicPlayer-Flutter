@@ -34,43 +34,13 @@ class _PlaylistState extends State<Playlist> {
     FirebaseAuth auth = FirebaseAuth.instance;
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection(auth.currentUser.uid);
-    Queuesongs() {
-      StreamBuilder(
-          stream: collectionReference.snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              count = snapshot.data.docs.length;
-              var Doc = snapshot.data.docs[index];
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => Playlistplay(
-                    passedPreview: Doc['Preview'],
-                    passedCover: Doc['Cover'],
-                    passedName: Doc['ArtistName'],
-                    passedTitle: Doc['Name'],
-                    passedCoverBig: Doc['Cover_big'],
-                  ),
-                ),
-              );
-            }
-          });
-    }
 
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-          backgroundColor: Colors.black87,
-          title: Text('           My playlist'),
-          actions: <Widget>[
-            PopupMenuButton<int>(
-                elevation: 50,
-                color: Colors.white,
-                onSelected: (item) => Queuesongs(),
-                itemBuilder: (context) =>
-                    [PopupMenuItem<int>(value: 0, child: Text('Queue All'))]),
-          ]),
+        backgroundColor: Colors.black87,
+        title: Text('           My playlist'),
+      ),
       body: Container(
         child: Column(children: [
           Container(

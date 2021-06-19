@@ -17,6 +17,8 @@ import 'poplist.dart';
 import './testplayer.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'billboard.dart';
+import 'playlist.dart';
+import 'home.dart';
 
 class MyHomePage extends StatefulWidget {
   final String uid;
@@ -149,7 +151,7 @@ class MyHomePageState extends State<MyHomePage> {
                   'https://lh3.googleusercontent.com/proxy/HJ3BHsyUj4xdjNIcm0QyZTJa8CS5YTLGzJQD8wx2bBlh42h-WkbL4eCTP3zW8SRr9gWvpSHP5ApbmnBDjbm-O0KascI3eMrQyOFAejTbq8Ffa7O6l6wx'),
             )
           ]),
-      drawer: MainDrawer(),
+      // drawer: MainDrawer(),
       body: (SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -392,71 +394,71 @@ class MyHomePageState extends State<MyHomePage> {
           ],
         ),
       )),
-      // bottomNavigationBar: (Padding(
-      //   padding: EdgeInsets.all(8.0),
-      //   child: Container(
-      //     color: Colors.grey[900],
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: <Widget>[
-      //         IconButton(
-      //             icon: (Icon(
-      //               Icons.home,
-      //               color: Colors.white,
-      //               size: 30,
-      //             )),
-      //             onPressed: null,
-      //             splashColor: Colors.blue),
-      //         IconButton(
-      //           icon: (Icon(
-      //             Icons.featured_play_list,
-      //             color: Colors.white,
-      //           )),
-      //           onPressed: () {
-      //             Navigator.of(context).push(
-      //                 MaterialPageRoute(builder: (context) => Playlist()));
-      //           },
-      //           splashColor: Colors.blue,
-      //         ),
-      //         IconButton(
-      //           icon: (Icon(
-      //             Icons.logout,
-      //             color: Colors.white,
-      //           )),
-      //           onPressed: () {
-      //             auth.signOut();
-      //             Navigator.of(context).pushReplacement(
-      //                 MaterialPageRoute(builder: (context) => LoginScreen()));
-      //           },
-      //           splashColor: Colors.blue,
-      //         ),
-      // ],
-      // child: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   children: <Widget>[
-      //     Image.asset(
-      //       home,
-      //       scale: 1.1,
-      //     ),
-      //     GestureDetector(
-      //       child: Image.asset(
-      //         list,
-      //         scale: 1.1,
-      //       ),
-      //       onTap: () {
-      //         Navigator.of(context)
-      //             .push(MaterialPageRoute(builder: (context) => Playlist()));
-      //       },
-      //     ),
-      //     Image.asset(
-      //       podcast,
-      //       scale: 1.1,
-      //     ),
-      //   ],
-      //       // ),
-      //     ),
-      //   ),
-      // )),
+      bottomNavigationBar: (Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Container(
+          color: Colors.grey[900],
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                IconButton(
+                    icon: (Icon(
+                      Icons.home,
+                      color: Colors.white,
+                      size: 30,
+                    )),
+                    onPressed: null,
+                    splashColor: Colors.blue),
+                IconButton(
+                  icon: (Icon(
+                    Icons.featured_play_list,
+                    color: Colors.white,
+                  )),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Playlist()));
+                  },
+                  splashColor: Colors.blue,
+                ),
+                IconButton(
+                  icon: (Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  )),
+                  onPressed: () {
+                    auth.signOut();
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  splashColor: Colors.blue,
+                ),
+              ]
+              // child: Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: <Widget>[
+              //     Image.asset(
+              //       home,
+              //       scale: 1.1,
+              //     ),
+              //     GestureDetector(
+              //       child: Image.asset(
+              //         list,
+              //         scale: 1.1,
+              //       ),
+              //       onTap: () {
+              //         Navigator.of(context)
+              //             .push(MaterialPageRoute(builder: (context) => Playlist()));
+              //       },
+              //     ),
+              //     Image.asset(
+              //       podcast,
+              //       scale: 1.1,
+              //     ),
+              //   ],
+              // ),
+              ),
+        ),
+      )),
     );
   }
 }
