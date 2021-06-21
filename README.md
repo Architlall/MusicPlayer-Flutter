@@ -1,6 +1,6 @@
 # first_app
 
-A new Flutter project.
+Flutter music player application developed using Android Studio and Emulator, Android 9 SDK 28 and Firebase Firestore.
 
 ## Getting Started
 
