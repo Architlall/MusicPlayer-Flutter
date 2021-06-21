@@ -48,14 +48,17 @@ class _HiphoplistState extends State<Hiphoplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '1. WHATS POPPIN    -     Jack Harlow',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/127437082/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '1. WHATS POPPIN    -     Jack Harlow',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/127437082/image"),
+                    ),
                   ),
                 ),
               ),
@@ -79,14 +82,17 @@ class _HiphoplistState extends State<Hiphoplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '2. UP   -    Cardi B',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/205396982/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '2. UP   -    Cardi B',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/205396982/image"),
+                    ),
                   ),
                 ),
               ),
@@ -110,14 +116,17 @@ class _HiphoplistState extends State<Hiphoplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '3. ROCKSTAR   -    DaBaby',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/142409332/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '3. ROCKSTAR   -    DaBaby',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/142409332/image"),
+                    ),
                   ),
                 ),
               ),

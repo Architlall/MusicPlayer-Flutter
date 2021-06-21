@@ -48,14 +48,17 @@ class _MetallistState extends State<Metallist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '1. War Pigs   -    Black Sabbath',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/15485488/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '1. War Pigs   -    Black Sabbath',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/15485488/image"),
+                    ),
                   ),
                 ),
               ),
@@ -78,14 +81,17 @@ class _MetallistState extends State<Metallist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '2. Walk   -    Pantera',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/80396/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '2. Walk   -    Pantera',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/80396/image"),
+                    ),
                   ),
                 ),
               ),
@@ -109,14 +115,17 @@ class _MetallistState extends State<Metallist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '3. Run to the Hills   -    The Iron Maidens',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/303656/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '3. Run to the Hills   -    The Iron Maidens',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/303656/image"),
+                    ),
                   ),
                 ),
               ),

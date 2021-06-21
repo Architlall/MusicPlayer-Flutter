@@ -43,18 +43,21 @@ class _SearchListState extends State<SearchList> {
                 ),
               );
             },
-            child: ListTile(
-              title: new Text(
-                (index + 1).toString() +
-                    '.   ' +
-                    widget.passedName[index].title +
-                    '   -   ' +
-                    widget.passedName[index].artist.name,
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: CircleAvatar(
-                backgroundImage:
-                    NetworkImage(widget.passedName[index].album.cover),
+            child: Card(
+              color: Colors.grey[900],
+              child: ListTile(
+                title: new Text(
+                  (index + 1).toString() +
+                      '.   ' +
+                      widget.passedName[index].title +
+                      '   -   ' +
+                      widget.passedName[index].artist.name,
+                  style: TextStyle(color: Colors.white),
+                ),
+                leading: CircleAvatar(
+                  backgroundImage:
+                      NetworkImage(widget.passedName[index].album.cover),
+                ),
               ),
             ),
           );

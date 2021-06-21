@@ -37,6 +37,7 @@ const good = "assets/images/good.png";
 const levitating = "assets/images/levitating.jpg";
 const leave = "assets/images/leave.png";
 const peaches = "assets/images/peaches.jpg";
+const profile = "assets/images/profile.jpg";
 
 Widget cbutton(String symbol) {
   return Container(

@@ -48,14 +48,17 @@ class _PoplistState extends State<Poplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '1. Watermelon Sugar    -     Harry Styles',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/122664252/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '1. Watermelon Sugar    -     Harry Styles',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/122664252/image"),
+                    ),
                   ),
                 ),
               ),
@@ -79,14 +82,17 @@ class _PoplistState extends State<Poplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '2. Senorita   -    Shawn Mendes and Camila Cabello',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/100856872/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '2. Senorita   -    Shawn Mendes and Camila Cabello',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/100856872/image"),
+                    ),
                   ),
                 ),
               ),
@@ -110,14 +116,17 @@ class _PoplistState extends State<Poplist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '3. Save Your Tears    -     The Weeknd',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/137217782/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '3. Save Your Tears    -     The Weeknd',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/137217782/image"),
+                    ),
                   ),
                 ),
               ),

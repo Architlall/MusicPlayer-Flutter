@@ -48,14 +48,17 @@ class _CountrylistState extends State<Countrylist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '1. Feels like Home   -    Tyler Rich',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/164589572/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '1. Feels like Home   -    Tyler Rich',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/164589572/image"),
+                    ),
                   ),
                 ),
               ),
@@ -79,14 +82,17 @@ class _CountrylistState extends State<Countrylist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '2. Simple   -    Florida Georgia Line',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/86994512/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '2. Simple   -    Florida Georgia Line',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/86994512/image"),
+                    ),
                   ),
                 ),
               ),
@@ -110,14 +116,17 @@ class _CountrylistState extends State<Countrylist> {
                     ),
                   );
                 },
-                child: ListTile(
-                  title: Text(
-                    '3. I called Mama   -    Tim Mcgraw',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://api.deezer.com/album/228464512/image"),
+                child: Card(
+                  color: Colors.grey[900],
+                  child: ListTile(
+                    title: Text(
+                      '3. I called Mama   -    Tim Mcgraw',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://api.deezer.com/album/228464512/image"),
+                    ),
                   ),
                 ),
               ),

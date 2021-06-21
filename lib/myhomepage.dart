@@ -96,6 +96,7 @@ class MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.black54,
       appBar: AppBar(
           backgroundColor: Colors.black87,
+          title: Text("Hello"),
           elevation: 30.0,
           actions: <Widget>[
             // IconButton(
@@ -125,7 +126,7 @@ class MyHomePageState extends State<MyHomePage> {
 
             SizedBox(
               height: 30,
-              width: 150,
+              width: 140,
               child: TextField(
                 controller: songnamecon,
                 style: TextStyle(color: Colors.white),
@@ -147,9 +148,8 @@ class MyHomePageState extends State<MyHomePage> {
                 }),
 
             CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://lh3.googleusercontent.com/proxy/HJ3BHsyUj4xdjNIcm0QyZTJa8CS5YTLGzJQD8wx2bBlh42h-WkbL4eCTP3zW8SRr9gWvpSHP5ApbmnBDjbm-O0KascI3eMrQyOFAejTbq8Ffa7O6l6wx'),
-            )
+                backgroundImage: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHS4YqFQ213jgyaYBsBY-rJYSus8M-XwxrNg&usqp=CAU'))
           ]),
       // drawer: MainDrawer(),
       body: (SingleChildScrollView(

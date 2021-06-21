@@ -255,23 +255,32 @@ class _AudioPlayerUrlState extends State<AudioPlayerUrl> {
                             color: Colors.red[900],
                           )),
                 SizedBox(width: 5),
-                IconButton(
-                  iconSize: 60,
-                  onPressed: () {
-                    audioPlayerState == AudioPlayerState.PLAYING
-                        ? pauseMusic()
-                        : playMusic();
-                  },
-                  icon: audioPlayerState == AudioPlayerState.PLAYING
-                      ? FaIcon(
-                          FontAwesomeIcons.solidPauseCircle,
-                          color: Colors.blue[300],
-                        )
-                      : FaIcon(
-                          FontAwesomeIcons.solidPlayCircle,
-                          color: Colors.blue[300],
-                        ),
-                  color: Colors.white,
+                Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue[50],
+                      blurRadius: 0.5,
+                      spreadRadius: 0.0,
+                    ),
+                  ]),
+                  child: IconButton(
+                    iconSize: 60,
+                    onPressed: () {
+                      audioPlayerState == AudioPlayerState.PLAYING
+                          ? pauseMusic()
+                          : playMusic();
+                    },
+                    icon: audioPlayerState == AudioPlayerState.PLAYING
+                        ? FaIcon(
+                            FontAwesomeIcons.solidPauseCircle,
+                            color: Colors.blue[300],
+                          )
+                        : FaIcon(
+                            FontAwesomeIcons.solidPlayCircle,
+                            color: Colors.blue[300],
+                          ),
+                    color: Colors.white,
+                  ),
                 ),
                 IconButton(
                     iconSize: 40,
